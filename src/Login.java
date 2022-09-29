@@ -1,42 +1,54 @@
 package src;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Login extends JFrame {
     JPanel labelPanel = new JPanel();
-    JPanel textFieldPanel = new JPanel();
+    JPanel idPanel = new JPanel();
+    JPanel passwordPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
 
     JLabel Label = new JLabel("<html><body style='text-align:center;'><h1>로그인</h1>이용하시려면 관리자 계정을 로그인 하세요.</body></html>");
-    JTextField idTextField = new JTextField(10);
-    JTextField passwordTextField = new JTextField(10);
+    JTextField idTextField = new JTextField(15);
+    JLabel idLabel = new JLabel("ID");
+    JTextField passwordTextField = new JTextField(15);
+    JLabel passwordLabel = new JLabel("PW");
     JButton loginButton = new JButton("로그인");
     JButton cancelButton = new JButton("종료");
 
     public Login() {
         setTitle("사원 관리 프로그램");
-        setSize(750, 600);
+        setSize(500, 350);
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
         setVisible(true);
 
-        add(labelPanel);
-        labelPanel.setBounds(200, 20, 500, 80);
+        labelPanel.setBounds(40, 25, 400, 100);
+        labelPanel.setBorder(new LineBorder(Color.BLACK));
         labelPanel.add(Label);
 
-        add(textFieldPanel);
-        textFieldPanel.setBounds(100, 200, 500, 100);
-        textFieldPanel.add(idTextField);
-        textFieldPanel.add(passwordTextField);
+        idPanel.setBounds(155, 160, 190, 25);
+        passwordPanel.setBounds(146, 190, 200, 25);
+        idPanel.add(idLabel);
+        idPanel.add(idTextField);
+        passwordPanel.add(passwordLabel);
+        passwordPanel.add(passwordTextField);
 
-        add(buttonPanel);
-        buttonPanel.setBounds(50, 400, 500, 50);
+        buttonPanel.setBounds(170, 240, 140, 35);
         buttonPanel.add(loginButton);
         buttonPanel.add(cancelButton);
         loginButton.addActionListener(new MyListener());
         cancelButton.addActionListener(new MyListener());
+
+        add(labelPanel);
+        add(idPanel);
+        add(passwordPanel);
+        add(buttonPanel);
     }
 
     class MyListener implements ActionListener {
