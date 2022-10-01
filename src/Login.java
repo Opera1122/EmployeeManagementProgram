@@ -5,8 +5,11 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
 public class Login extends JFrame {
+    static Admin admin = new Admin(null, null, 0, null, null, null);
+
     JPanel labelPanel = new JPanel();
     JPanel idPanel = new JPanel();
     JPanel passwordPanel = new JPanel();
@@ -20,11 +23,78 @@ public class Login extends JFrame {
     JButton loginButton = new JButton("로그인");
     JButton cancelButton = new JButton("종료");
 
+    public static Connection makeConnection() {
+        Connection con = null;
+
+        try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+            String url="jdbc:mysql://localhost:3306/employeedb?serverTimezone=Asia/Seoul";
+			String userId="root";
+			String password="1234";
+
+            con = DriverManager.getConnection(url, userId, password);
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
+        return con;
+    }
+
+    public void loginProcess() throws SQLException {
+        boolean inputMatchCheck = false;
+        makeConnection();
+
+        String sql = "select * from employeedb.admin";
+        Statement stmt = makeConnection().createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        if (rs.next() == ture) {
+            inputMatchCheck = true;
+        }
+
+        if (inputMatchCheck == true) {
+            dispose();
+            new Test();
+        } else {
+            new LoginError();
+        }
+    }
+//    public void insertBook(Book book) {
+//
+//
+//        String sql="insert into book values(?, ?, ?, ?)";
+//
+//        try {
+//            PreparedStatement pstmt = con.prepareStatement(sql);
+//            book.setBookId(Integer.parseInt(bookNumTextField.getText()));
+//            pstmt.setInt(1, book.getBookId());
+//            book.setBookName(bookNameTextField.getText());
+//            pstmt.setString(2, book.getBookName());
+//            book.setPublisher(bookPublisherTextField.getText());
+//            pstmt.setString(3, book.getPublisher());
+//            book.setPrice(Integer.parseInt(bookPriceTextField.getText()));
+//            pstmt.setInt(4, book.getPrice());
+//
+//            int row = pstmt.executeUpdate();
+//
+//            if (row==1)
+//                stateLabel.setText("�߰� ����");
+//            else
+//                stateLabel.setText("�߰� ����");
+//
+//            pstmt.close();
+//            makeConnection().close();
+//        } catch (SQLException e){
+//            e.printStackTrace();
+//        }
+//    }
+
     public Login() {
         setTitle("사원 관리 프로그램");
         setSize(500, 350);
         setLayout(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
 
@@ -56,8 +126,11 @@ public class Login extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == loginButton) {
-                dispose();
-                new Test();
+                try {
+                    loginProcess();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             } else if (e.getSource() == cancelButton) {
                 dispose();
             }

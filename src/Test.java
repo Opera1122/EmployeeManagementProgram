@@ -12,7 +12,7 @@ public class Test extends JFrame {
         setTitle("테스트");
         setSize(750, 600);
         setLayout(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
         add(testPanel);
