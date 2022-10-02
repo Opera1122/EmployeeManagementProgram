@@ -60,35 +60,6 @@ public class Login extends JFrame {
             new LoginError();
         }
     }
-//    public void insertBook(Book book) {
-//
-//
-//        String sql="insert into book values(?, ?, ?, ?)";
-//
-//        try {
-//            PreparedStatement pstmt = con.prepareStatement(sql);
-//            book.setBookId(Integer.parseInt(bookNumTextField.getText()));
-//            pstmt.setInt(1, book.getBookId());
-//            book.setBookName(bookNameTextField.getText());
-//            pstmt.setString(2, book.getBookName());
-//            book.setPublisher(bookPublisherTextField.getText());
-//            pstmt.setString(3, book.getPublisher());
-//            book.setPrice(Integer.parseInt(bookPriceTextField.getText()));
-//            pstmt.setInt(4, book.getPrice());
-//
-//            int row = pstmt.executeUpdate();
-//
-//            if (row==1)
-//                stateLabel.setText("�߰� ����");
-//            else
-//                stateLabel.setText("�߰� ����");
-//
-//            pstmt.close();
-//            makeConnection().close();
-//        } catch (SQLException e){
-//            e.printStackTrace();
-//        }
-//    }
 
     public Login() {
         setTitle("사원 관리 프로그램");
