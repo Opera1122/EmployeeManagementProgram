@@ -46,18 +46,24 @@ public class Login extends JFrame {
         boolean inputMatchCheck = false;
         makeConnection();
 
-        String sql = "select * from employeedb.admin";
+        String sql = "select id, pw from employeedb.admin";
         Statement stmt = makeConnection().createStatement();
         ResultSet rs = stmt.executeQuery(sql);
-        if (rs.next() == ture) {
-            inputMatchCheck = true;
-        }
 
-        if (inputMatchCheck == true) {
-            dispose();
-            new Test();
-        } else {
-            new LoginError();
+        while(rs.next()) {
+            String adminId = rs.getString(1);
+            String adminPassword = rs.getString(2);
+
+            if (idTextField.getText().equals(adminId) && passwordTextField.getText().equals(adminPassword)) {
+                inputMatchCheck = true;
+            }
+
+            if (inputMatchCheck == true) {
+                dispose();
+                new Test();
+            } else {
+                new LoginError();
+            }
         }
     }
 
