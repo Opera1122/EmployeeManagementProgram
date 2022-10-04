@@ -51,16 +51,17 @@ public class Login extends JFrame {
         ResultSet rs = stmt.executeQuery(sql);
 
         while(rs.next()) {
-            String adminId = rs.getString(1);
-            String adminPassword = rs.getString(2);
+            admin.setId(rs.getString(1));
+            admin.setPw(rs.getString(2));
 
-            if (idTextField.getText().equals(adminId) && passwordTextField.getText().equals(adminPassword)) {
+            if (idTextField.getText().equals(admin.getId()) && passwordTextField.getText().equals(admin.getPw())) {
                 inputMatchCheck = true;
             }
 
             if (inputMatchCheck == true) {
                 dispose();
                 new Test();
+//                new MenuSelection();
             } else {
                 new LoginError();
             }
