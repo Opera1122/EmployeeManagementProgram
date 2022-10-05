@@ -5,68 +5,49 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import src.jdbc.*;
 import java.sql.*;
 
 public class Login extends JFrame {
-    static Admin admin = new Admin(null, null, 0, null, null, null);
-
     JPanel labelPanel = new JPanel();
     JPanel idPanel = new JPanel();
     JPanel passwordPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
 
     JLabel Label = new JLabel("<html><body style='text-align:center;'><h1>로그인</h1>이용하시려면 관리자 계정을 로그인 하세요.</body></html>");
-    JTextField idTextField = new JTextField(15);
+    public JTextField idTextField = new JTextField(15);
     JLabel idLabel = new JLabel("ID");
-    JTextField passwordTextField = new JTextField(15);
+    public JTextField passwordTextField = new JTextField(15);
     JLabel passwordLabel = new JLabel("PW");
     JButton loginButton = new JButton("로그인");
     JButton cancelButton = new JButton("종료");
 
-    public static Connection makeConnection() {
-        Connection con = null;
-
-        try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-            String url="jdbc:mysql://localhost:3306/employeedb?serverTimezone=Asia/Seoul";
-			String userId="root";
-			String password="1234";
-
-            con = DriverManager.getConnection(url, userId, password);
-
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-
-        return con;
-    }
-
-    public void loginProcess() throws SQLException {
-        boolean inputMatchCheck = false;
-        makeConnection();
-
-        String sql = "select id, pw from employeedb.admin";
-        Statement stmt = makeConnection().createStatement();
-        ResultSet rs = stmt.executeQuery(sql);
-
-        while(rs.next()) {
-            admin.setId(rs.getString(1));
-            admin.setPw(rs.getString(2));
-
-            if (idTextField.getText().equals(admin.getId()) && passwordTextField.getText().equals(admin.getPw())) {
-                inputMatchCheck = true;
-            }
-
-            if (inputMatchCheck == true) {
-                dispose();
-                new Test();
-//                new MenuSelection();
-            } else {
-                new LoginError();
-            }
-        }
-    }
+//    public void loginProcess() throws SQLException {
+//        Admin admin = new Admin(null, null, 0, null, null, null);
+//        boolean inputMatchCheck = false;
+//        JDBCUtill.makeConnection();
+//
+//        String sql = "select id, pw from employeedb.admin";
+//        Statement stmt = JDBCUtill.makeConnection().createStatement();
+//        ResultSet rs = stmt.executeQuery(sql);
+//
+//        while(rs.next()) {
+//            admin.setId(rs.getString(1));
+//            admin.setPw(rs.getString(2));
+//
+//            if (idTextField.getText().equals(admin.getId()) && passwordTextField.getText().equals(admin.getPw())) {
+//                inputMatchCheck = true;
+//            }
+//
+//            if (inputMatchCheck == true) {
+//                dispose();
+//                new Test();
+////                new MenuSelection();
+//            } else {
+//                new LoginError();
+//            }
+//        }
+//    }
 
     public Login() {
         setTitle("사원 관리 프로그램");
@@ -105,7 +86,7 @@ public class Login extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == loginButton) {
                 try {
-                    loginProcess();
+                    JDBCUtill.loginProcess(idTextField.getText(), passwordTextField.getText(), null);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
