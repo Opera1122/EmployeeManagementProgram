@@ -22,33 +22,6 @@ public class Login extends JFrame {
     JButton loginButton = new JButton("로그인");
     JButton cancelButton = new JButton("종료");
 
-//    public void loginProcess() throws SQLException {
-//        Admin admin = new Admin(null, null, 0, null, null, null);
-//        boolean inputMatchCheck = false;
-//        JDBCUtill.makeConnection();
-//
-//        String sql = "select id, pw from employeedb.admin";
-//        Statement stmt = JDBCUtill.makeConnection().createStatement();
-//        ResultSet rs = stmt.executeQuery(sql);
-//
-//        while(rs.next()) {
-//            admin.setId(rs.getString(1));
-//            admin.setPw(rs.getString(2));
-//
-//            if (idTextField.getText().equals(admin.getId()) && passwordTextField.getText().equals(admin.getPw())) {
-//                inputMatchCheck = true;
-//            }
-//
-//            if (inputMatchCheck == true) {
-//                dispose();
-//                new Test();
-////                new MenuSelection();
-//            } else {
-//                new LoginError();
-//            }
-//        }
-//    }
-
     public Login() {
         setTitle("사원 관리 프로그램");
         setSize(500, 350);
@@ -86,10 +59,20 @@ public class Login extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == loginButton) {
                 try {
-                    JDBCUtill.loginProcess(idTextField.getText(), passwordTextField.getText(), null);
+                    LoginDAO.loginProcess(idTextField.getText(), passwordTextField.getText());
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
+
+                if (LoginDAO.inputMatchCheck == true) {
+                    dispose();
+                    new Test();
+                    LoginDAO.inputMatchCheck = false;
+//                new MenuSelection();
+                } else {
+                    new LoginError();
+                }
+
             } else if (e.getSource() == cancelButton) {
                 dispose();
             }
