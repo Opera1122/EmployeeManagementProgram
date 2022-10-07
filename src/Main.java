@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public class Main extends JFrame {
     public static void main(String[] args) {
-        Login lg = new Login();
+//        Login lg = new Login();
+        MenuSelection m = new MenuSelection();
     }
 }

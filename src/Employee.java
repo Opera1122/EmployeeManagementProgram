@@ -1,68 +1,78 @@
 package src;
 
 public class Employee {
-    private int Number;
-    private int Age;
-    private String Name;
-    private String Address;
-    private String Email;
-    private String Tel;
+    private int number;
+    private String name;
+    private int birthDate;
+    private String address;
+    private String email;
+    private String tel;
+    private Object image;
 
 
-    public Employee(int number, int age, String name, String address, String email, String tel) {
-        Number = number;
-        Age = age;
-        Name = name;
-        Address = address;
-        Email = email;
-        Tel = tel;
+    public Employee(int number, int birthDate, String name, String address, String email, String tel, Object image) {
+        this.number = number;
+        this.birthDate = birthDate;
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.tel = tel;
+        this.image = image;
     }
 
     public int getNumber() {
-        return Number;
+        return number;
     }
 
     public void setNumber(int number) {
-        Number = number;
-    }
-
-    public int getAge() {
-        return Age;
-    }
-
-    public void setAge(int age) {
-        Age = age;
+        this.number = number;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
+    }
+
+    public int getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(int birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getTel() {
-        return Tel;
+        return tel;
     }
 
     public void setTel(String tel) {
-        Tel = tel;
+        this.tel = tel;
+    }
+
+    public Object getImage() {
+        return image;
+    }
+
+    public void setImage(Object image) {
+        this.image = image;
     }
 }

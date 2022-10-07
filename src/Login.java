@@ -66,9 +66,9 @@ public class Login extends JFrame {
 
                 if (LoginDAO.inputMatchCheck == true) {
                     dispose();
-                    new Test();
+//                    new Test();
+                    new MenuSelection();
                     LoginDAO.inputMatchCheck = false;
-//                new MenuSelection();
                 } else {
                     new LoginError();
                 }

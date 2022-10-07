@@ -1,67 +1,67 @@
 package src;
 
 public class Admin {
-    private String Id;
-    private String Pw;
-    private int Age;
-    private String Name;
-    private String Address;
-    private String Tel;
+    private String id;
+    private String pw;
+    private int age;
+    private String name;
+    private String address;
+    private String tel;
 
     public Admin(String id, String pw, int age, String name, String address, String tel) {
-        Id = id;
-        Pw = pw;
-        Age = age;
-        Name = name;
-        Address = address;
-        Tel = tel;
+        this.id = id;
+        this.pw = pw;
+        this.age = age;
+        this.name = name;
+        this.address = address;
+        this.tel = tel;
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getPw() {
-        return Pw;
+        return pw;
     }
 
     public void setPw(String pw) {
-        Pw = pw;
+        this.pw = pw;
     }
 
     public int getAge() {
-        return Age;
+        return age;
     }
 
     public void setAge(int age) {
-        Age = age;
+        this.age = age;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
     public String getTel() {
-        return Tel;
+        return tel;
     }
 
     public void setTel(String tel) {
-        Tel = tel;
+        this.tel = tel;
     }
 }
