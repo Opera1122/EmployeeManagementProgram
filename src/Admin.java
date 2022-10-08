@@ -3,15 +3,15 @@ package src;
 public class Admin {
     private String id;
     private String pw;
-    private int age;
+    private int birthDate;
     private String name;
     private String address;
     private String tel;
 
-    public Admin(String id, String pw, int age, String name, String address, String tel) {
+    public Admin(String id, String pw, int birthDate, String name, String address, String tel) {
         this.id = id;
         this.pw = pw;
-        this.age = age;
+        this.birthDate = birthDate;
         this.name = name;
         this.address = address;
         this.tel = tel;
@@ -33,12 +33,12 @@ public class Admin {
         this.pw = pw;
     }
 
-    public int getAge() {
-        return age;
+    public int getBirthDate() {
+        return birthDate;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthDate(int age) {
+        this.birthDate = birthDate;
     }
 
     public String getName() {

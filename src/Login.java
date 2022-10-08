@@ -30,6 +30,11 @@ public class Login extends JFrame {
         setResizable(false);
         setVisible(true);
 
+        add(labelPanel);
+        add(idPanel);
+        add(passwordPanel);
+        add(buttonPanel);
+
         labelPanel.setBounds(40, 25, 400, 100);
         labelPanel.setBorder(new LineBorder(Color.BLACK));
         labelPanel.add(Label);
@@ -46,11 +51,6 @@ public class Login extends JFrame {
         buttonPanel.add(cancelButton);
         loginButton.addActionListener(new MyListener());
         cancelButton.addActionListener(new MyListener());
-
-        add(labelPanel);
-        add(idPanel);
-        add(passwordPanel);
-        add(buttonPanel);
     }
 
     class MyListener implements ActionListener {
@@ -59,16 +59,15 @@ public class Login extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == loginButton) {
                 try {
-                    LoginDAO.loginProcess(idTextField.getText(), passwordTextField.getText());
+                    AdminDAO.loginProcess(idTextField.getText(), passwordTextField.getText());
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
 
-                if (LoginDAO.inputMatchCheck == true) {
+                if (AdminDAO.inputMatchCheck == true) {
                     dispose();
-//                    new Test();
                     new MenuSelection();
-                    LoginDAO.inputMatchCheck = false;
+                    AdminDAO.inputMatchCheck = false;
                 } else {
                     new LoginError();
                 }
