@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class LoginDAO {
+public class AdminDAO {
     public static boolean inputMatchCheck = false;
     public static void loginProcess(String id, String password) throws SQLException {
         Admin admin = new Admin(null, null, 0, null, null, null);
