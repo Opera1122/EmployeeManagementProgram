@@ -10,6 +10,13 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class MenuSelection extends JFrame {
+    JMenuBar topMenuBar = new JMenuBar();
+    JMenu topMenufile = new JMenu("파일");
+    JMenuItem fileLogOut = new JMenuItem("로그아웃");
+    JMenuItem fileExit = new JMenuItem("종료");
+    JMenu topMenuHelp = new JMenu("도움말");
+    JMenuItem helpInfo = new JMenuItem("정보");
+
     JPanel topButtonPanel = new JPanel();
     JButton signUpMenuButton = new JButton("사원 등록");
     JButton infoMenuButton = new JButton("사원 정보");
@@ -33,7 +40,6 @@ public class MenuSelection extends JFrame {
     JButton resetButton = new JButton("다시 작성");
 
     JPanel infoMenuPanel = new JPanel();
-    JPanel infoPanel = new JPanel();
     JLabel infoNumberLabel = new JLabel("번호");
     JTextField infoNumberTextField = new JTextField(10);
     JLabel infoNameLabel = new JLabel("이름");
@@ -51,7 +57,6 @@ public class MenuSelection extends JFrame {
     JButton editButton = new JButton("수정");
     JButton deleteButton = new JButton("삭제");
 
-    JPanel searchPanel = new JPanel();
     String numberAndName[] = {"번호", "이름"};
     String numberAndNames[][] = {{"1", "ㅎㅇ"}, {"2", "ㅂㅇ"}};
     JComboBox numberAndNameComboBox = new JComboBox(numberAndName);
@@ -66,15 +71,28 @@ public class MenuSelection extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
+        setJMenuBar(topMenuBar);
+
+        topMenuBar.add(topMenufile);
+        topMenufile.add(fileLogOut);
+        fileLogOut.addActionListener(new MyListener());
+        topMenufile.add(fileExit);
+        fileExit.addActionListener(new MyListener());
+        topMenuBar.add(topMenuHelp);
+        topMenuHelp.add(helpInfo);
+        helpInfo.addActionListener(new MyListener());
 
         add(topButtonPanel);
         add(signUpMenuPanel);
         add(infoMenuPanel);
 
-        topButtonPanel.setBounds(30, 20, 200, 35);
-        signUpMenuPanel.setBounds(40, 60, 600, 450);
+        infoMenuPanel.setVisible(true);
+        signUpMenuPanel.setVisible(false);
+
+        topButtonPanel.setBounds(30, 10, 200, 35);
+        signUpMenuPanel.setBounds(40, 50, 600, 450);
         signUpMenuPanel.setBorder(new LineBorder(Color.BLACK));
-        infoMenuPanel.setBounds(40, 60, 600, 450);
+        infoMenuPanel.setBounds(40, 50, 600, 450);
         infoMenuPanel.setBorder(new LineBorder(Color.BLACK));
 
         signUpMenuPanel.setLayout(null);
@@ -85,39 +103,40 @@ public class MenuSelection extends JFrame {
         signUpMenuButton.addActionListener(new MyListener());
         infoMenuButton.addActionListener(new MyListener());
 
-        int x = 50;
-        int y = 30;
-        int textFieldMarginLeft = 70;
-        int marginBottom = 50;
+        int signUpX = 50;
+        int signUpY = 30;
+        int signUpTextFieldMarginLeft = 70;
+        int signUpmarginBottom = 50;
         int labelWidth = 60;
         int labelHeight = 20;
         int textFieldWidth = 200;
         int textFieldHeight = 25;
 
+        //사원 등록
         signUpMenuPanel.add(signUpNumberLabel);
-        signUpNumberLabel.setBounds(x, y, labelWidth, labelHeight);
+        signUpNumberLabel.setBounds(signUpX, signUpY, labelWidth, labelHeight);
         signUpMenuPanel.add(signUpNumberTextField);
-        signUpNumberTextField.setBounds(x + textFieldMarginLeft, y, textFieldWidth, textFieldHeight);
+        signUpNumberTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
 
         signUpMenuPanel.add(signUpNameLabel);
-        signUpNameLabel.setBounds(x, y += marginBottom, labelWidth, labelHeight);
+        signUpNameLabel.setBounds(signUpX, signUpY += signUpmarginBottom, labelWidth, labelHeight);
         signUpMenuPanel.add(signUpNameTextField);
-        signUpNameTextField.setBounds(x + textFieldMarginLeft, y, textFieldWidth, textFieldHeight);
+        signUpNameTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
 
         signUpMenuPanel.add(signUpBirthDateLabel);
-        signUpBirthDateLabel.setBounds(x, y += marginBottom, labelWidth, labelHeight);
+        signUpBirthDateLabel.setBounds(signUpX, signUpY += signUpmarginBottom, labelWidth, labelHeight);
         signUpMenuPanel.add(signUpBirthDateTextField);
-        signUpBirthDateTextField.setBounds(x + textFieldMarginLeft, y, textFieldWidth, textFieldHeight);
+        signUpBirthDateTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
 
         signUpMenuPanel.add(signUpAddressLabel);
-        signUpAddressLabel.setBounds(x, y += marginBottom, labelWidth, labelHeight);
+        signUpAddressLabel.setBounds(signUpX, signUpY += signUpmarginBottom, labelWidth, labelHeight);
         signUpMenuPanel.add(signUpAddressTextField);
-        signUpAddressTextField.setBounds(x + textFieldMarginLeft, y, textFieldWidth, textFieldHeight);
+        signUpAddressTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
 
         signUpMenuPanel.add(signUpEmailLabel);
-        signUpEmailLabel.setBounds(x, y += marginBottom, labelWidth, labelHeight);
+        signUpEmailLabel.setBounds(signUpX, signUpY += signUpmarginBottom, labelWidth, labelHeight);
         signUpMenuPanel.add(signUpEmailTextField);
-        signUpEmailTextField.setBounds(x + textFieldMarginLeft, y, textFieldWidth, textFieldHeight);
+        signUpEmailTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
 
         signUpMenuPanel.add(signUpImagePanel);
         signUpImagePanel.setBounds(400, 28, 150, 150);
@@ -134,12 +153,35 @@ public class MenuSelection extends JFrame {
         resetButton.setBounds(315, 350, 100, 40);
         resetButton.addActionListener(new MyListener());
 
-        infoMenuPanel.add(infoPanel);
+        //사원 정보
+        infoMenuPanel.add(infoImagePanel);
+        infoImagePanel.setBounds(40, 20, 150, 150);
+        infoImagePanel.setBorder(new LineBorder(Color.BLACK));
+        infoMenuPanel.add(infoImportImageButton);
+        infoImportImageButton.setBounds(20, 190, 90, 30);
+        infoMenuPanel.add(infoDeleteImageButton);
+        infoDeleteImageButton.setBounds(120, 190, 90, 30);
+
+        infoMenuPanel.add(infoNumberLabel);
+        infoNumberLabel.setBounds(20, 240, labelWidth, labelHeight);
+        infoMenuPanel.add(infoNumberTextField);
+        infoNumberTextField.setBounds(60, 240, textFieldWidth, textFieldHeight);
     }
 
     class MyListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == fileLogOut) {
+                new Login();
+                dispose();
+            } else if (e.getSource() == fileExit) {
+                dispose();
+            }
+
+            if (e.getSource() == helpInfo) {
+                new Information();
+            }
+
             if (e.getSource() == signUpMenuButton) {
                 signUpMenuPanel.setVisible(true);
                 infoMenuPanel.setVisible(false);
