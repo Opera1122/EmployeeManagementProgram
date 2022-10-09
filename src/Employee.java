@@ -8,9 +8,10 @@ public class Employee {
     private String email;
     private String tel;
     private Object image;
+    private String position;
 
 
-    public Employee(int number, int birthDate, String name, String address, String email, String tel, Object image) {
+    public Employee(int number, int birthDate, String name, String address, String email, String tel, Object image, String position) {
         this.number = number;
         this.birthDate = birthDate;
         this.name = name;
@@ -18,6 +19,7 @@ public class Employee {
         this.email = email;
         this.tel = tel;
         this.image = image;
+        this.position = position;
     }
 
     public int getNumber() {
@@ -74,5 +76,13 @@ public class Employee {
 
     public void setImage(Object image) {
         this.image = image;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 }

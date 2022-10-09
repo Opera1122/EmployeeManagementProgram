@@ -32,6 +32,8 @@ public class MenuSelection extends JFrame {
     JTextField signUpAddressTextField = new JTextField(20);
     JLabel signUpEmailLabel = new JLabel("이메일");
     JTextField signUpEmailTextField = new JTextField(20);
+    JLabel signUpPositionLabel = new JLabel("직위");
+    JTextField signUpPositionTextField = new JTextField(20);
     JPanel signUpImagePanel = new JPanel();
     JButton signUpImportImageButton = new JButton("불러오기");
     JButton signUpDeleteImageButton = new JButton("삭제");
@@ -137,6 +139,11 @@ public class MenuSelection extends JFrame {
         signUpEmailLabel.setBounds(signUpX, signUpY += signUpmarginBottom, labelWidth, labelHeight);
         signUpMenuPanel.add(signUpEmailTextField);
         signUpEmailTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
+
+        signUpMenuPanel.add(signUpPositionLabel);
+        signUpPositionLabel.setBounds(signUpX, signUpY += signUpmarginBottom, labelWidth, labelHeight);
+        signUpMenuPanel.add(signUpPositionTextField);
+        signUpPositionTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
 
         signUpMenuPanel.add(signUpImagePanel);
         signUpImagePanel.setBounds(400, 28, 150, 150);
