@@ -52,10 +52,11 @@ public class MenuSelection extends JFrame {
     JTextField infoAddressTextField = new JTextField(20);
     JLabel infoEmailLabel = new JLabel("이메일");
     JTextField infoEmailTextField = new JTextField(20);
+    JLabel infoPositionLabel = new JLabel("직위");
+    JTextField infoPositionTextField = new JTextField(20);
     JPanel infoImagePanel = new JPanel();
     JButton infoImportImageButton = new JButton("불러오기");
     JButton infoDeleteImageButton = new JButton("삭제");
-
     JButton editButton = new JButton("수정");
     JButton deleteButton = new JButton("삭제");
 
@@ -111,7 +112,7 @@ public class MenuSelection extends JFrame {
         int signUpmarginBottom = 50;
         int labelWidth = 60;
         int labelHeight = 20;
-        int textFieldWidth = 200;
+        int textFieldWidth = 150;
         int textFieldHeight = 25;
 
         //사원 등록
@@ -162,17 +163,45 @@ public class MenuSelection extends JFrame {
 
         //사원 정보
         infoMenuPanel.add(infoImagePanel);
-        infoImagePanel.setBounds(40, 20, 150, 150);
+        infoImagePanel.setBounds(40, 10, 150, 150);
         infoImagePanel.setBorder(new LineBorder(Color.BLACK));
         infoMenuPanel.add(infoImportImageButton);
-        infoImportImageButton.setBounds(20, 190, 90, 30);
+        infoImportImageButton.setBounds(20, 170, 90, 30);
         infoMenuPanel.add(infoDeleteImageButton);
-        infoDeleteImageButton.setBounds(120, 190, 90, 30);
+        infoDeleteImageButton.setBounds(120, 170, 90, 30);
 
         infoMenuPanel.add(infoNumberLabel);
-        infoNumberLabel.setBounds(20, 240, labelWidth, labelHeight);
+        infoNumberLabel.setBounds(20, 220, labelWidth, labelHeight);
         infoMenuPanel.add(infoNumberTextField);
-        infoNumberTextField.setBounds(60, 240, textFieldWidth, textFieldHeight);
+        infoNumberTextField.setBounds(80, 220, textFieldWidth, textFieldHeight);
+        infoMenuPanel.add(infoNameLabel);
+        infoNameLabel.setBounds(20, 250, labelWidth, labelHeight);
+        infoMenuPanel.add(infoNameTextField);
+        infoNameTextField.setBounds(80, 250, textFieldWidth, textFieldHeight);
+        infoMenuPanel.add(infoBirthDateLabel);
+        infoBirthDateLabel.setBounds(20, 280, labelWidth, labelHeight);
+        infoMenuPanel.add(infoBirthDateTextField);
+        infoBirthDateTextField.setBounds(80, 280, textFieldWidth, textFieldHeight);
+        infoMenuPanel.add(infoAddressLabel);
+        infoAddressLabel.setBounds(20, 310, labelWidth, labelHeight);
+        infoMenuPanel.add(infoAddressTextField);
+        infoAddressTextField.setBounds(80, 310, textFieldWidth, textFieldHeight);
+        infoMenuPanel.add(infoEmailLabel);
+        infoEmailLabel.setBounds(20, 340, labelWidth, labelHeight);
+        infoMenuPanel.add(infoEmailTextField);
+        infoEmailTextField.setBounds(80, 340, textFieldWidth, textFieldHeight);
+        infoMenuPanel.add(infoPositionLabel);
+        infoPositionLabel.setBounds(20, 370, labelWidth, labelHeight);
+        infoMenuPanel.add(infoPositionTextField);
+        infoPositionTextField.setBounds(80, 370, textFieldWidth, textFieldHeight);
+
+        infoMenuPanel.add(editButton);
+        editButton.setBounds(20, 405, 100, 30);
+        editButton.addActionListener(new MyListener());
+        infoMenuPanel.add(deleteButton);
+        deleteButton.setBounds(130, 405, 100, 30);
+        deleteButton.addActionListener(new MyListener());
+
     }
 
     class MyListener implements ActionListener {
