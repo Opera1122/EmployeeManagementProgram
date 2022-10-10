@@ -69,7 +69,7 @@ public class MenuSelection extends JFrame {
 
     public MenuSelection() {
         setTitle("사원 관리 프로그램");
-        setSize(700, 600);
+        setSize(700, 620);
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
@@ -93,9 +93,9 @@ public class MenuSelection extends JFrame {
         signUpMenuPanel.setVisible(false);
 
         topButtonPanel.setBounds(30, 10, 200, 35);
-        signUpMenuPanel.setBounds(40, 50, 600, 450);
+        signUpMenuPanel.setBounds(40, 50, 600, 470);
         signUpMenuPanel.setBorder(new LineBorder(Color.BLACK));
-        infoMenuPanel.setBounds(40, 50, 600, 450);
+        infoMenuPanel.setBounds(40, 50, 600, 470);
         infoMenuPanel.setBorder(new LineBorder(Color.BLACK));
 
         signUpMenuPanel.setLayout(null);
@@ -196,10 +196,10 @@ public class MenuSelection extends JFrame {
         infoPositionTextField.setBounds(80, 370, textFieldWidth, textFieldHeight);
 
         infoMenuPanel.add(editButton);
-        editButton.setBounds(20, 405, 100, 30);
+        editButton.setBounds(20, 420, 100, 30);
         editButton.addActionListener(new MyListener());
         infoMenuPanel.add(deleteButton);
-        deleteButton.setBounds(130, 405, 100, 30);
+        deleteButton.setBounds(130, 420, 100, 30);
         deleteButton.addActionListener(new MyListener());
 
     }
