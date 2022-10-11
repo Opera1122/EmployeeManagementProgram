@@ -202,6 +202,15 @@ public class MenuSelection extends JFrame {
         deleteButton.setBounds(130, 420, 100, 30);
         deleteButton.addActionListener(new MyListener());
 
+        //테이블 부분
+        infoMenuPanel.add(numberAndNameComboBox);
+        numberAndNameComboBox.setBounds(280, 20, 70, 30);
+        infoMenuPanel.add(searchTextField);
+        searchTextField.setBounds(370, 20, 100, 30);
+        infoMenuPanel.add(searchButton);
+        searchButton.setBounds(480, 20, 70, 30);
+        infoMenuPanel.add(table);
+        table.setBounds(280, 60, 300, 400);
     }
 
     class MyListener implements ActionListener {
