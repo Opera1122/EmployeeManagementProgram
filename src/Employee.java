@@ -11,10 +11,10 @@ public class Employee {
     private String position;
 
 
-    public Employee(int number, int birthDate, String name, String address, String email, String tel, Object image, String position) {
+    public Employee(int number, String name, int birthDate, String address, String email, String tel, Object image, String position) {
         this.number = number;
-        this.birthDate = birthDate;
         this.name = name;
+        this.birthDate = birthDate;
         this.address = address;
         this.email = email;
         this.tel = tel;
