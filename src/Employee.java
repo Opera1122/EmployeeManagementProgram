@@ -1,5 +1,8 @@
 package src;
 
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+
 public class Employee {
     private int number;
     private String name;
@@ -7,11 +10,11 @@ public class Employee {
     private String address;
     private String email;
     private String tel;
-    private Object image;
+    private BufferedImage image;
     private String position;
 
 
-    public Employee(int number, String name, int birthDate, String address, String email, String tel, Object image, String position) {
+    public Employee(int number, String name, int birthDate, String address, String email, String tel, BufferedImage image, String position) {
         this.number = number;
         this.name = name;
         this.birthDate = birthDate;
@@ -74,7 +77,7 @@ public class Employee {
         return image;
     }
 
-    public void setImage(Object image) {
+    public void setImage(BufferedImage image) {
         this.image = image;
     }
 
