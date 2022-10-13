@@ -4,6 +4,7 @@ import src.jdbc.*;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,29 +17,7 @@ public class MenuSelection extends JFrame {
     JMenu topMenuHelp = new JMenu("도움말");
     JMenuItem helpInfo = new JMenuItem("정보");
 
-    JPanel topButtonPanel = new JPanel();
-    JButton signUpMenuButton = new JButton("사원 등록");
-    JButton infoMenuButton = new JButton("사원 정보");
-
-    JPanel signUpMenuPanel = new JPanel();
-    JLabel signUpNameLabel = new JLabel("이름");
-    JTextField signUpNameTextField = new JTextField(10);
-    JLabel signUpBirthDateLabel = new JLabel("생년월일");
-    JTextField signUpBirthDateTextField = new JTextField(10);
-    JLabel signUpAddressLabel = new JLabel("주소");
-    JTextField signUpAddressTextField = new JTextField(20);
-    JLabel signUpEmailLabel = new JLabel("이메일");
-    JTextField signUpEmailTextField = new JTextField(20);
-    JLabel signUpTelLabel = new JLabel("휴대전화");
-    JTextField signUpTelTextField = new JTextField(10);
-    JLabel signUpPositionLabel = new JLabel("직위");
-    JTextField signUpPositionTextField = new JTextField(20);
-    JPanel signUpImagePanel = new JPanel();
-    JButton signUpImportImageButton = new JButton("불러오기");
-    JButton signUpDeleteImageButton = new JButton("삭제");
-
-    JButton signUpButton = new JButton("등록");
-    JButton resetButton = new JButton("다시 작성");
+    JTabbedPane topTab = new JTabbedPane(JTabbedPane.TOP);
 
     JPanel infoMenuPanel = new JPanel();
     JLabel infoNumberLabel = new JLabel("번호");
@@ -57,6 +36,7 @@ public class MenuSelection extends JFrame {
     JTextField infoPositionTextField = new JTextField(20);
     JPanel infoImagePanel = new JPanel();
     JButton infoImportImageButton = new JButton("불러오기");
+    JFileChooser infofileChooser = new JFileChooser();
     JButton infoDeleteImageButton = new JButton("삭제");
     JButton editButton = new JButton("수정");
     JButton deleteButton = new JButton("삭제");
@@ -68,6 +48,28 @@ public class MenuSelection extends JFrame {
     JButton searchButton = new JButton("조회");
     JTable table = new JTable(numberAndNames, numberAndName);
     JScrollPane scrollPane = new JScrollPane(table);
+
+    JPanel signUpMenuPanel = new JPanel();
+    JLabel signUpNameLabel = new JLabel("이름");
+    JTextField signUpNameTextField = new JTextField(10);
+    JLabel signUpBirthDateLabel = new JLabel("생년월일");
+    JTextField signUpBirthDateTextField = new JTextField(10);
+    JLabel signUpAddressLabel = new JLabel("주소");
+    JTextField signUpAddressTextField = new JTextField(20);
+    JLabel signUpEmailLabel = new JLabel("이메일");
+    JTextField signUpEmailTextField = new JTextField(20);
+    JLabel signUpTelLabel = new JLabel("휴대전화");
+    JTextField signUpTelTextField = new JTextField(10);
+    JLabel signUpPositionLabel = new JLabel("직위");
+    JTextField signUpPositionTextField = new JTextField(20);
+    JPanel signUpImagePanel = new JPanel();
+    JButton signUpImportImageButton = new JButton("불러오기");
+    JFileChooser signUpfileChooser = new JFileChooser();
+    FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("이미지 파일(*.jpg;*.jpeg;*.png)", "jpg", "jpeg", "png");
+    JButton signUpDeleteImageButton = new JButton("삭제");
+
+    JButton signUpButton = new JButton("등록");
+    JButton resetButton = new JButton("다시 작성");
 
     public MenuSelection() {
         setTitle("사원 관리 프로그램");
@@ -87,26 +89,13 @@ public class MenuSelection extends JFrame {
         topMenuHelp.add(helpInfo);
         helpInfo.addActionListener(new MyListener());
 
-        add(topButtonPanel);
-        add(signUpMenuPanel);
-        add(infoMenuPanel);
+        add(topTab);
+        topTab.setBounds(40, 20, 600, 520);
+        topTab.addTab("사원 정보", infoMenuPanel);
+        topTab.addTab("사원 등록", signUpMenuPanel);
 
-        infoMenuPanel.setVisible(true);
-        signUpMenuPanel.setVisible(false);
-
-        topButtonPanel.setBounds(30, 10, 200, 35);
-        signUpMenuPanel.setBounds(40, 50, 600, 490);
-        signUpMenuPanel.setBorder(new LineBorder(Color.BLACK));
-        infoMenuPanel.setBounds(40, 50, 600, 490);
-        infoMenuPanel.setBorder(new LineBorder(Color.BLACK));
-
-        signUpMenuPanel.setLayout(null);
         infoMenuPanel.setLayout(null);
-
-        topButtonPanel.add(signUpMenuButton);
-        topButtonPanel.add(infoMenuButton);
-        signUpMenuButton.addActionListener(new MyListener());
-        infoMenuButton.addActionListener(new MyListener());
+        signUpMenuPanel.setLayout(null);
 
         int signUpX = 50;
         int signUpY = 30;
@@ -116,55 +105,6 @@ public class MenuSelection extends JFrame {
         int labelHeight = 20;
         int textFieldWidth = 150;
         int textFieldHeight = 25;
-
-        //사원 등록
-        signUpMenuPanel.add(signUpNameLabel);
-        signUpNameLabel.setBounds(signUpX, signUpY, labelWidth, labelHeight);
-        signUpMenuPanel.add(signUpNameTextField);
-        signUpNameTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
-
-        signUpMenuPanel.add(signUpBirthDateLabel);
-        signUpBirthDateLabel.setBounds(signUpX, signUpY += signUpmarginBottom, labelWidth, labelHeight);
-        signUpMenuPanel.add(signUpBirthDateTextField);
-        signUpBirthDateTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
-
-        signUpMenuPanel.add(signUpAddressLabel);
-        signUpAddressLabel.setBounds(signUpX, signUpY += signUpmarginBottom, labelWidth, labelHeight);
-        signUpMenuPanel.add(signUpAddressTextField);
-        signUpAddressTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
-
-        signUpMenuPanel.add(signUpEmailLabel);
-        signUpEmailLabel.setBounds(signUpX, signUpY += signUpmarginBottom, labelWidth, labelHeight);
-        signUpMenuPanel.add(signUpEmailTextField);
-        signUpEmailTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
-
-        signUpMenuPanel.add(signUpTelLabel);
-        signUpTelLabel.setBounds(signUpX, signUpY += signUpmarginBottom, labelWidth, labelHeight);
-        signUpMenuPanel.add(signUpTelTextField);
-        signUpTelTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
-
-        signUpMenuPanel.add(signUpPositionLabel);
-        signUpPositionLabel.setBounds(signUpX, signUpY += signUpmarginBottom, labelWidth, labelHeight);
-        signUpMenuPanel.add(signUpPositionTextField);
-        signUpPositionTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
-
-        signUpMenuPanel.add(signUpImagePanel);
-        signUpImagePanel.setBounds(400, 28, 150, 150);
-        signUpImagePanel.setBorder(new LineBorder(Color.BLACK));
-
-        signUpMenuPanel.add(signUpImportImageButton);
-        signUpImportImageButton.setBounds(380, 190, 90, 30);
-
-        signUpMenuPanel.add(signUpDeleteImageButton);
-        signUpDeleteImageButton.setBounds(480, 190, 90, 30);
-
-        signUpMenuPanel.add(signUpButton);
-        signUpButton.setBounds(200, 350, 100, 40);
-        signUpButton.addActionListener(new MyListener());
-
-        signUpMenuPanel.add(resetButton);
-        resetButton.setBounds(315, 350, 100, 40);
-        resetButton.addActionListener(new MyListener());
 
         //사원 정보
         infoMenuPanel.add(infoImagePanel);
@@ -230,6 +170,57 @@ public class MenuSelection extends JFrame {
         infoMenuPanel.add(table);
         table.setBounds(280, 60, 300, 400);
         infoMenuPanel.add(scrollPane);
+
+        //사원 등록
+        signUpMenuPanel.add(signUpNameLabel);
+        signUpNameLabel.setBounds(signUpX, signUpY, labelWidth, labelHeight);
+        signUpMenuPanel.add(signUpNameTextField);
+        signUpNameTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
+
+        signUpMenuPanel.add(signUpBirthDateLabel);
+        signUpBirthDateLabel.setBounds(signUpX, signUpY += signUpmarginBottom, labelWidth, labelHeight);
+        signUpMenuPanel.add(signUpBirthDateTextField);
+        signUpBirthDateTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
+
+        signUpMenuPanel.add(signUpAddressLabel);
+        signUpAddressLabel.setBounds(signUpX, signUpY += signUpmarginBottom, labelWidth, labelHeight);
+        signUpMenuPanel.add(signUpAddressTextField);
+        signUpAddressTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
+
+        signUpMenuPanel.add(signUpEmailLabel);
+        signUpEmailLabel.setBounds(signUpX, signUpY += signUpmarginBottom, labelWidth, labelHeight);
+        signUpMenuPanel.add(signUpEmailTextField);
+        signUpEmailTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
+
+        signUpMenuPanel.add(signUpTelLabel);
+        signUpTelLabel.setBounds(signUpX, signUpY += signUpmarginBottom, labelWidth, labelHeight);
+        signUpMenuPanel.add(signUpTelTextField);
+        signUpTelTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
+
+        signUpMenuPanel.add(signUpPositionLabel);
+        signUpPositionLabel.setBounds(signUpX, signUpY += signUpmarginBottom, labelWidth, labelHeight);
+        signUpMenuPanel.add(signUpPositionTextField);
+        signUpPositionTextField.setBounds(signUpX + signUpTextFieldMarginLeft, signUpY, textFieldWidth, textFieldHeight);
+
+        signUpMenuPanel.add(signUpImagePanel);
+        signUpImagePanel.setBounds(400, 28, 150, 150);
+        signUpImagePanel.setBorder(new LineBorder(Color.BLACK));
+
+        signUpMenuPanel.add(signUpImportImageButton);
+        signUpImportImageButton.setBounds(380, 190, 90, 30);
+        signUpImportImageButton.addActionListener(new MyListener());
+
+        signUpMenuPanel.add(signUpDeleteImageButton);
+        signUpDeleteImageButton.setBounds(480, 190, 90, 30);
+        signUpDeleteImageButton.addActionListener(new MyListener());
+
+        signUpMenuPanel.add(signUpButton);
+        signUpButton.setBounds(200, 350, 100, 40);
+        signUpButton.addActionListener(new MyListener());
+
+        signUpMenuPanel.add(resetButton);
+        resetButton.setBounds(315, 350, 100, 40);
+        resetButton.addActionListener(new MyListener());
     }
 
     class MyListener implements ActionListener {
@@ -246,24 +237,22 @@ public class MenuSelection extends JFrame {
                 new Information();
             }
 
-//            if (e.getSource() == signUpButton) {
-//                EmployeeDAO.signUpEmployee(
-//                        signUpNameTextField.getText(),
-//                        Integer.parseInt((signUpBirthDateTextField.getText())),
-//                        signUpAddressTextField.getText(),
-//                        signUpEmailTextField.getText(),
-//                        signUpTelTextField.getText(),
-//                        signUpImage.getText(),
-//                        signUpPositionTextField.getText(),
-//                );
-//            }
+            if (e.getSource() == signUpImportImageButton) {
+                System.out.println("signUpImportImageButton");
+                signUpfileChooser.addChoosableFileFilter(fileFilter);
+                signUpfileChooser.showOpenDialog(null);
+            }
 
-            if (e.getSource() == signUpMenuButton) {
-                signUpMenuPanel.setVisible(true);
-                infoMenuPanel.setVisible(false);
-            } else if (e.getSource() == infoMenuButton) {
-                signUpMenuPanel.setVisible(false);
-                infoMenuPanel.setVisible(true);
+            if (e.getSource() == signUpButton) {
+                EmployeeDAO.signUpEmployee(
+                        signUpNameTextField.getText(),
+                        Integer.parseInt((signUpBirthDateTextField.getText())),
+                        signUpAddressTextField.getText(),
+                        signUpEmailTextField.getText(),
+                        signUpTelTextField.getText(),
+                        signUpImage.get
+                        signUpPositionTextField.getText(),
+                );
             }
 
         }

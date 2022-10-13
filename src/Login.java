@@ -17,7 +17,7 @@ public class Login extends JFrame {
     JLabel Label = new JLabel("<html><body style='text-align:center;'><h1>로그인</h1>이용하시려면 관리자 계정을 로그인 하세요.</body></html>");
     public JTextField idTextField = new JTextField(15);
     JLabel idLabel = new JLabel("ID");
-    public JTextField passwordTextField = new JTextField(15);
+    public JPasswordField passwordTextField = new JPasswordField(15);
     JLabel passwordLabel = new JLabel("PW");
     JButton loginButton = new JButton("로그인");
     JButton cancelButton = new JButton("종료");
@@ -29,6 +29,8 @@ public class Login extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
+
+        passwordTextField.setEchoChar('*');
 
         add(labelPanel);
         add(idPanel);
