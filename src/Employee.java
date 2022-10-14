@@ -10,18 +10,16 @@ public class Employee {
     private String address;
     private String email;
     private String tel;
-    private BufferedImage image;
     private String position;
 
 
-    public Employee(int number, String name, int birthDate, String address, String email, String tel, BufferedImage image, String position) {
+    public Employee(int number, String name, int birthDate, String address, String email, String tel, String position) {
         this.number = number;
         this.name = name;
         this.birthDate = birthDate;
         this.address = address;
         this.email = email;
         this.tel = tel;
-        this.image = image;
         this.position = position;
     }
 
@@ -71,14 +69,6 @@ public class Employee {
 
     public void setTel(String tel) {
         this.tel = tel;
-    }
-
-    public Object getImage() {
-        return image;
-    }
-
-    public void setImage(BufferedImage image) {
-        this.image = image;
     }
 
     public String getPosition() {

@@ -8,6 +8,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class MenuSelection extends JFrame {
     JMenuBar topMenuBar = new JMenuBar();
@@ -238,21 +239,23 @@ public class MenuSelection extends JFrame {
             }
 
             if (e.getSource() == signUpImportImageButton) {
-                System.out.println("signUpImportImageButton");
                 signUpfileChooser.addChoosableFileFilter(fileFilter);
                 signUpfileChooser.showOpenDialog(null);
             }
 
             if (e.getSource() == signUpButton) {
-                EmployeeDAO.signUpEmployee(
-                        signUpNameTextField.getText(),
-                        Integer.parseInt((signUpBirthDateTextField.getText())),
-                        signUpAddressTextField.getText(),
-                        signUpEmailTextField.getText(),
-                        signUpTelTextField.getText(),
-                        signUpImage.get
-                        signUpPositionTextField.getText(),
-                );
+                try {
+                    EmployeeDAO.signUpEmployee(
+                            signUpNameTextField.getText(),
+                            Integer.parseInt(signUpBirthDateTextField.getText()),
+                            signUpAddressTextField.getText(),
+                            signUpEmailTextField.getText(),
+                            signUpTelTextField.getText(),
+                            signUpPositionTextField.getText()
+                    );
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
 
         }
