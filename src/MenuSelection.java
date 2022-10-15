@@ -261,7 +261,6 @@ public class MenuSelection extends JFrame {
 
             if (e.getSource() == signUpButton) {
                 try {
-                    model.setNumRows(0);
                     EmployeeDAO.signUpEmployee(
                             signUpNameTextField.getText(),
                             Integer.parseInt(signUpBirthDateTextField.getText()),
@@ -270,6 +269,7 @@ public class MenuSelection extends JFrame {
                             signUpTelTextField.getText(),
                             signUpPositionTextField.getText()
                     );
+                    model.setNumRows(0);
                     EmployeeDAO.showNumberAndNameTable(model);
                     clearSignUpContents();
                 } catch (SQLException ex) {
