@@ -74,6 +74,15 @@ public class MenuSelection extends JFrame {
     JButton signUpButton = new JButton("등록");
     JButton resetButton = new JButton("다시 작성");
 
+    void clearSignUpContents() {
+        signUpNameTextField.setText(null);
+        signUpBirthDateTextField.setText(null);
+        signUpAddressTextField.setText(null);
+        signUpEmailTextField.setText(null);
+        signUpTelTextField.setText(null);
+        signUpPositionTextField.setText(null);
+    }
+
     public MenuSelection() {
         setTitle("사원 관리 프로그램");
         setSize(700, 640);
@@ -173,6 +182,11 @@ public class MenuSelection extends JFrame {
         searchButton.setBounds(480, 20, 70, 30);
         infoMenuPanel.add(scrollPane);
         scrollPane.setBounds(280, 60, 300, 410);
+        try {
+            EmployeeDAO.showNumberAndNameTable(model);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         //사원 등록
         signUpMenuPanel.add(signUpNameLabel);
@@ -247,6 +261,7 @@ public class MenuSelection extends JFrame {
 
             if (e.getSource() == signUpButton) {
                 try {
+                    model.setNumRows(0);
                     EmployeeDAO.signUpEmployee(
                             signUpNameTextField.getText(),
                             Integer.parseInt(signUpBirthDateTextField.getText()),
@@ -255,22 +270,25 @@ public class MenuSelection extends JFrame {
                             signUpTelTextField.getText(),
                             signUpPositionTextField.getText()
                     );
+                    EmployeeDAO.showNumberAndNameTable(model);
+                    clearSignUpContents();
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
+            } else if (e.getSource() == resetButton) {
+                clearSignUpContents();
             }
 
         }
     }
 
-    class MyMouseListener implements MouseListener {    // 마우스로 눌려진값확인하기
-        public void mouseClicked(java.awt.event.MouseEvent e) {    // 선택된 위치의 값을 출력
-
+    class MyMouseListener implements MouseListener {
+        public void mouseClicked(java.awt.event.MouseEvent e) {
             JTable jtable = (JTable)e.getSource();
-            int row = jtable.getSelectedRow();                // 선택된 테이블의 행값
-            int col = jtable.getSelectedColumn();         // 선택된 테이블의 열값
+            int row = jtable.getSelectedRow();
+            int col = jtable.getSelectedColumn();
 
-            System.out.println(model.getValueAt(row, col));   // 선택된 위치의 값을 얻어내서 출력
+            System.out.println(model.getValueAt(row, col));
 
         }
         public void mouseEntered(java.awt.event.MouseEvent e) {
