@@ -5,9 +5,11 @@ import src.jdbc.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 
 public class MenuSelection extends JFrame {
@@ -43,11 +45,11 @@ public class MenuSelection extends JFrame {
     JButton deleteButton = new JButton("삭제");
 
     String numberAndName[] = {"번호", "이름"};
-    String numberAndNames[][] = {{"1", "ㅎㅇ"}, {"2", "ㅂㅇ"}};
     JComboBox numberAndNameComboBox = new JComboBox(numberAndName);
     JTextField searchTextField = new JTextField(10);
     JButton searchButton = new JButton("조회");
-    JTable table = new JTable(numberAndNames, numberAndName);
+    DefaultTableModel model = new DefaultTableModel(numberAndName, 0);
+    JTable table = new JTable(model);
     JScrollPane scrollPane = new JScrollPane(table);
 
     JPanel signUpMenuPanel = new JPanel();
@@ -167,10 +169,10 @@ public class MenuSelection extends JFrame {
         infoMenuPanel.add(searchTextField);
         searchTextField.setBounds(370, 20, 100, 30);
         infoMenuPanel.add(searchButton);
+        table.addMouseListener(new MyMouseListener());
         searchButton.setBounds(480, 20, 70, 30);
-        infoMenuPanel.add(table);
-        table.setBounds(280, 60, 300, 400);
         infoMenuPanel.add(scrollPane);
+        scrollPane.setBounds(280, 60, 300, 410);
 
         //사원 등록
         signUpMenuPanel.add(signUpNameLabel);
@@ -258,6 +260,26 @@ public class MenuSelection extends JFrame {
                 }
             }
 
+        }
+    }
+
+    class MyMouseListener implements MouseListener {    // 마우스로 눌려진값확인하기
+        public void mouseClicked(java.awt.event.MouseEvent e) {    // 선택된 위치의 값을 출력
+
+            JTable jtable = (JTable)e.getSource();
+            int row = jtable.getSelectedRow();                // 선택된 테이블의 행값
+            int col = jtable.getSelectedColumn();         // 선택된 테이블의 열값
+
+            System.out.println(model.getValueAt(row, col));   // 선택된 위치의 값을 얻어내서 출력
+
+        }
+        public void mouseEntered(java.awt.event.MouseEvent e) {
+        }
+        public void mouseExited(java.awt.event.MouseEvent e) {
+        }
+        public void mousePressed(java.awt.event.MouseEvent e) {
+        }
+        public void mouseReleased(java.awt.event.MouseEvent e) {
         }
     }
 }
