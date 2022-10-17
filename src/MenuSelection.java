@@ -284,9 +284,9 @@ public class MenuSelection extends JFrame {
 
     class MyMouseListener implements MouseListener {
         public void mouseClicked(java.awt.event.MouseEvent e) {
-            JTable jtable = (JTable)e.getSource();
-            int row = jtable.getSelectedRow();
-            int col = jtable.getSelectedColumn();
+            table = (JTable)e.getSource();
+            int row = table.getSelectedRow();
+            int col = table.getSelectedColumn();
 
             System.out.println(model.getValueAt(row, col));
 
