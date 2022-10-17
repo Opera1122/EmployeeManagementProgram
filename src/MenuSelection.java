@@ -286,7 +286,6 @@ public class MenuSelection extends JFrame {
         public void mouseClicked(java.awt.event.MouseEvent e) {
             table = (JTable)e.getSource();
             int selectedRow = table.getSelectedRow();
-            int selectedcol = table.getSelectedColumn();
 
             for (int i = 0; i <= model.getRowCount(); i++) {
                 if (selectedRow == i) {
@@ -294,13 +293,6 @@ public class MenuSelection extends JFrame {
                     System.out.println(model.getValueAt(i, 1));
                 }
             }
-//
-//            if (row == 1 || col == 1) {
-//                System.out.print(model.getValueAt(row, col) + "  ");
-//                col += 1;
-//                System.out.println(model.getValueAt(row, col));
-//                col = 0;
-//            }
         }
         public void mouseEntered(java.awt.event.MouseEvent e) {
         }
