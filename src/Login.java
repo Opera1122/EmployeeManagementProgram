@@ -71,7 +71,7 @@ public class Login extends JFrame {
                     new MenuSelection();
                     AdminDAO.inputMatchCheck = false;
                 } else {
-                    new LoginError();
+                    JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호를 다시 확인하세요.", "로그인 실패", JOptionPane.ERROR_MESSAGE);
                 }
 
             } else if (e.getSource() == cancelButton) {
