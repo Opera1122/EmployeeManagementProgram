@@ -259,6 +259,14 @@ public class MenuSelection extends JFrame {
                 signUpfileChooser.showOpenDialog(null);
             }
 
+            if (e.getSource() == searchButton) {
+                try {
+                    EmployeeDAO.showNumberAndNameTable(model);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+
             if (e.getSource() == signUpButton) {
                 try {
                     EmployeeDAO.signUpEmployee(
@@ -272,8 +280,11 @@ public class MenuSelection extends JFrame {
                     model.setNumRows(0);
                     EmployeeDAO.showNumberAndNameTable(model);
                     clearSignUpContents();
+                    JOptionPane.showMessageDialog(null, "사원 정보가 등록되었습니다.", "등록 성공", JOptionPane.INFORMATION_MESSAGE);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "입력 정보를 다시 확인하세요.", "오류", JOptionPane.ERROR_MESSAGE);
                 }
             } else if (e.getSource() == resetButton) {
                 clearSignUpContents();
