@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MenuSelection extends JFrame {
@@ -74,6 +75,15 @@ public class MenuSelection extends JFrame {
     JButton signUpButton = new JButton("등록");
     JButton resetButton = new JButton("다시 작성");
 
+    void clearInfoContents() {
+        infoNumberTextField.setText(null);
+        infoNameTextField.setText(null);
+        infoBirthDateTextField.setText(null);
+        infoAddressTextField.setText(null);
+        infoEmailTextField.setText(null);
+        infoTelTextField.setText(null);
+        infoPositionTextField.setText(null);
+    }
     void clearSignUpContents() {
         signUpNameTextField.setText(null);
         signUpBirthDateTextField.setText(null);
@@ -254,6 +264,26 @@ public class MenuSelection extends JFrame {
                 new Information();
             }
 
+            if (e.getSource() == editButton) {
+                try {
+                    EmployeeDAO.showListToTextFields(
+                            infoNumberTextField,
+                            infoNameTextField,
+                            infoBirthDateTextField,
+                            infoAddressTextField,
+                            infoEmailTextField,
+                            infoTelTextField,
+                            infoPositionTextField
+                    );
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+
+            if (e.getSource() == deleteButton) {
+                clearInfoContents();
+            }
+
             if (e.getSource() == signUpImportImageButton) {
                 signUpfileChooser.addChoosableFileFilter(fileFilter);
                 signUpfileChooser.showOpenDialog(null);
@@ -300,8 +330,21 @@ public class MenuSelection extends JFrame {
 
             for (int i = 0; i <= model.getRowCount(); i++) {
                 if (selectedRow == i) {
-                    System.out.print(model.getValueAt(i, 0) + "  ");
-                    System.out.println(model.getValueAt(i, 1));
+                    try {
+                        EmployeeDAO.showListToTextFields(
+                                infoNumberTextField,
+                                infoNameTextField,
+                                infoBirthDateTextField,
+                                infoAddressTextField,
+                                infoEmailTextField,
+                                infoTelTextField,
+                                infoPositionTextField
+                        );
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
+//                    System.out.print(model.getValueAt(i, 0) + "  ");
+//                    System.out.println(model.getValueAt(i, 1));
                 }
             }
         }

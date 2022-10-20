@@ -15,7 +15,6 @@ public class Information extends JFrame {
     public Information() {
         setTitle("프로그램 정보");
         setSize(400, 200);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);
         setResizable(false);
         setVisible(true);

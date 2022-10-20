@@ -9,7 +9,6 @@ public class LoginError extends JFrame {
     JButton checkButton = new JButton("확인");
     public LoginError() {
         setTitle("로그인 실패");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500, 140);
         setLayout(null);
         setResizable(false);
