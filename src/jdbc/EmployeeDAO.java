@@ -118,18 +118,6 @@ public class EmployeeDAO {
                 infoTelTextField.setText(tel);
                 infoPositionTextField.setText(position);
             }
-//            for (int i = 0; i <= selectedRow; i++) {
-//                System.out.println(number);
-//                if (selectedRow == number) {
-//                    infoNumberTextField.setText(String.valueOf(number));
-//                    infoNameTextField.setText(name);
-//                    infoBirthDateTextField.setText(String.valueOf(birthDate));
-//                    infoAddressTextField.setText(address);
-//                    infoEmailTextField.setText(email);
-//                    infoTelTextField.setText(tel);
-//                    infoPositionTextField.setText(position);
-//                }
-//            }
         }
 
         stmt.close();
