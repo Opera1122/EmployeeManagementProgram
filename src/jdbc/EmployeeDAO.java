@@ -107,13 +107,9 @@ public class EmployeeDAO {
             String tel = employee.getTel();
             String position = employee.getPosition();
 
-            selectedRow = table.getSelectedRow() + 1;
+            selectedRow = (int) model.getValueAt(table.getSelectedRow(),0);
 
             if (selectedRow == number) {
-//                if (number == 0) {
-//                    System.out.println("ㅋ");
-//                }
-
                 infoNumberTextField.setText(String.valueOf(number));
                 infoNameTextField.setText(name);
                 infoBirthDateTextField.setText(String.valueOf(birthDate));
@@ -121,9 +117,6 @@ public class EmployeeDAO {
                 infoEmailTextField.setText(email);
                 infoTelTextField.setText(tel);
                 infoPositionTextField.setText(position);
-                System.out.println((int) model.getValueAt(selectedRow - 1,0));
-                System.out.print(selectedRow + "  ");
-                System.out.println(number);
             }
 //            for (int i = 0; i <= selectedRow; i++) {
 //                System.out.println(number);
