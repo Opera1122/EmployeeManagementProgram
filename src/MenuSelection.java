@@ -265,19 +265,7 @@ public class MenuSelection extends JFrame {
             }
 
             if (e.getSource() == editButton) {
-                try {
-                    EmployeeDAO.showListToTextFields(
-                            infoNumberTextField,
-                            infoNameTextField,
-                            infoBirthDateTextField,
-                            infoAddressTextField,
-                            infoEmailTextField,
-                            infoTelTextField,
-                            infoPositionTextField
-                    );
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
+
             }
 
             if (e.getSource() == deleteButton) {
@@ -328,24 +316,21 @@ public class MenuSelection extends JFrame {
             table = (JTable)e.getSource();
             int selectedRow = table.getSelectedRow();
 
-            for (int i = 0; i <= model.getRowCount(); i++) {
-                if (selectedRow == i) {
-                    try {
-                        EmployeeDAO.showListToTextFields(
-                                infoNumberTextField,
-                                infoNameTextField,
-                                infoBirthDateTextField,
-                                infoAddressTextField,
-                                infoEmailTextField,
-                                infoTelTextField,
-                                infoPositionTextField
-                        );
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
-//                    System.out.print(model.getValueAt(i, 0) + "  ");
-//                    System.out.println(model.getValueAt(i, 1));
-                }
+            try {
+                EmployeeDAO.showListToTextFields(
+                        table,
+                        selectedRow,
+                        model,
+                        infoNumberTextField,
+                        infoNameTextField,
+                        infoBirthDateTextField,
+                        infoAddressTextField,
+                        infoEmailTextField,
+                        infoTelTextField,
+                        infoPositionTextField
+                );
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
             }
         }
         public void mouseEntered(java.awt.event.MouseEvent e) {

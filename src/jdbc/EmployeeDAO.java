@@ -72,10 +72,21 @@ public class EmployeeDAO {
         JDBCUtill.makeConnection().close();
     }
 
-    public static void showListToTextFields(JTextField infoNumber, JTextField infoName, JTextField infoBirthDate, JTextField infoAddress, JTextField infoEmail, JTextField infoTel, JTextField infoPosition) throws SQLException {
+    public static void showListToTextFields(
+            JTable table,
+            int selectedRow,
+            DefaultTableModel model,
+            JTextField infoNumberTextField,
+            JTextField infoNameTextField,
+            JTextField infoBirthDateTextField,
+            JTextField infoAddressTextField,
+            JTextField infoEmailTextField,
+            JTextField infoTelTextField,
+            JTextField infoPositionTextField
+    ) throws SQLException {
         JDBCUtill.makeConnection();
 
-        String sql = "select top 2 * from employeedb.employee";
+        String sql = "select * from employeedb.employee";
         Statement stmt = JDBCUtill.makeConnection().createStatement();
         rs = stmt.executeQuery(sql);
 
@@ -96,13 +107,36 @@ public class EmployeeDAO {
             String tel = employee.getTel();
             String position = employee.getPosition();
 
-            infoNumber.setText(String.valueOf(number));
-            infoName.setText(name);
-            infoBirthDate.setText(String.valueOf(birthDate));
-            infoAddress.setText(address);
-            infoEmail.setText(email);
-            infoTel.setText(tel);
-            infoPosition.setText(position);
+            selectedRow = table.getSelectedRow() + 1;
+
+            if (selectedRow == number) {
+//                if (number == 0) {
+//                    System.out.println("ㅋ");
+//                }
+
+                infoNumberTextField.setText(String.valueOf(number));
+                infoNameTextField.setText(name);
+                infoBirthDateTextField.setText(String.valueOf(birthDate));
+                infoAddressTextField.setText(address);
+                infoEmailTextField.setText(email);
+                infoTelTextField.setText(tel);
+                infoPositionTextField.setText(position);
+                System.out.println((int) model.getValueAt(selectedRow - 1,0));
+                System.out.print(selectedRow + "  ");
+                System.out.println(number);
+            }
+//            for (int i = 0; i <= selectedRow; i++) {
+//                System.out.println(number);
+//                if (selectedRow == number) {
+//                    infoNumberTextField.setText(String.valueOf(number));
+//                    infoNameTextField.setText(name);
+//                    infoBirthDateTextField.setText(String.valueOf(birthDate));
+//                    infoAddressTextField.setText(address);
+//                    infoEmailTextField.setText(email);
+//                    infoTelTextField.setText(tel);
+//                    infoPositionTextField.setText(position);
+//                }
+//            }
         }
 
         stmt.close();
