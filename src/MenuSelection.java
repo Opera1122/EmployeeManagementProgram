@@ -251,6 +251,7 @@ public class MenuSelection extends JFrame {
     }
 
     class MyListener implements ActionListener {
+        int selectedRow = 0;
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == fileLogOut) {
@@ -265,7 +266,6 @@ public class MenuSelection extends JFrame {
             }
 
             if (e.getSource() == editButton) {
-                int selectedRow = 0;
                 EmployeeDAO.EditEmployee(
                         table,
                         selectedRow,
@@ -285,10 +285,19 @@ public class MenuSelection extends JFrame {
                     throw new RuntimeException(ex);
                 }
                 clearInfoContents();
+                JOptionPane.showMessageDialog(null, "사원 정보가 수정되었습니다.", "수정 성공", JOptionPane.INFORMATION_MESSAGE);
             }
 
             if (e.getSource() == deleteButton) {
+                EmployeeDAO.DeleteEmployee(table, selectedRow, model);
+                model.setNumRows(0);
+                try {
+                    EmployeeDAO.ShowNumberAndNameTable(model);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
                 clearInfoContents();
+                JOptionPane.showMessageDialog(null, "사원 정보가 삭제되었습니다.", "삭제 성공", JOptionPane.INFORMATION_MESSAGE);
             }
 
             if (e.getSource() == signUpImportImageButton) {

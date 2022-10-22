@@ -180,4 +180,29 @@ public class EmployeeDAO {
             e.printStackTrace();
         }
     }
+
+    public static void DeleteEmployee(JTable table, int selectedRow, DefaultTableModel model) {
+        JDBCUtill.makeConnection();
+
+        String sql="delete from employee where number=?";
+        selectedRow = SelectedNumberValueFilter(table, selectedRow, model);
+
+        try {
+            PreparedStatement pstmt = JDBCUtill.makeConnection().prepareStatement(sql);
+            employee.setNumber(selectedRow);
+            pstmt.setInt(1, employee.getNumber());
+
+            int row = pstmt.executeUpdate();
+
+//            if (row==1)
+//                삭제 성공
+//            else
+//                실패
+
+            pstmt.close();
+            JDBCUtill.makeConnection().close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
