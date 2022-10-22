@@ -12,7 +12,8 @@ import java.sql.Statement;
 public class EmployeeDAO {
     static Employee employee = new Employee(0, null, 0, null, null, null, null);
     public static ResultSet rs;
-    public static void signUpEmployee(String name, int birthDate, String address, String email, String tel, String position) throws SQLException {
+
+    public static void SignUpEmployee(String name, int birthDate, String address, String email, String tel, String position) throws SQLException {
         JDBCUtill.makeConnection();
 
         String autoSql = "alter table employee auto_increment = 1;";
@@ -54,7 +55,7 @@ public class EmployeeDAO {
         }
     }
 
-    public static void showNumberAndNameTable(DefaultTableModel model) throws SQLException {
+    public static void ShowNumberAndNameTable(DefaultTableModel model) throws SQLException {
         JDBCUtill.makeConnection();
 
         String sql = "select number, name from employeedb.employee";
@@ -72,7 +73,13 @@ public class EmployeeDAO {
         JDBCUtill.makeConnection().close();
     }
 
-    public static void showListToTextFields(
+    public static int SelectedNumberValueFilter(JTable table, int selectedRow, DefaultTableModel model) {
+        selectedRow = (int) model.getValueAt(table.getSelectedRow(), 0);
+
+        return selectedRow;
+    }
+
+    public static void ShowListToTextFields(
             JTable table,
             int selectedRow,
             DefaultTableModel model,
@@ -107,9 +114,9 @@ public class EmployeeDAO {
             String tel = employee.getTel();
             String position = employee.getPosition();
 
-            selectedRow = (int) model.getValueAt(table.getSelectedRow(),0);
+            SelectedNumberValueFilter(table, selectedRow, model);
 
-            if (selectedRow == number) {
+            if (SelectedNumberValueFilter(table, selectedRow, model) == number) {
                 infoNumberTextField.setText(String.valueOf(number));
                 infoNameTextField.setText(name);
                 infoBirthDateTextField.setText(String.valueOf(birthDate));
@@ -122,5 +129,55 @@ public class EmployeeDAO {
 
         stmt.close();
         JDBCUtill.makeConnection().close();
+    }
+
+    public static void EditEmployee(
+            JTable table,
+            int selectedRow,
+            DefaultTableModel model,
+            String name,
+            int birthDate,
+            String address,
+            String email,
+            String tel,
+            String position,
+            int number
+    ) {
+        JDBCUtill.makeConnection();
+
+        String sql = "update employee set number=?, name=?, birthdate=?, address=?, email=?, tel=?, position=? where number=?";
+
+        selectedRow = SelectedNumberValueFilter(table, selectedRow, model);
+
+        try {
+            PreparedStatement pstmt = JDBCUtill.makeConnection().prepareStatement(sql);
+            employee.setNumber(number);
+            pstmt.setInt(1, employee.getNumber());
+            employee.setName(name);
+            pstmt.setString(2, employee.getName());
+            employee.setBirthDate(birthDate);
+            pstmt.setInt(3, employee.getBirthDate());
+            employee.setAddress(address);
+            pstmt.setString(4, employee.getAddress());
+            employee.setEmail(email);
+            pstmt.setString(5, employee.getEmail());
+            employee.setTel(tel);
+            pstmt.setString(6, employee.getTel());
+            employee.setPosition(position);
+            pstmt.setString(7, employee.getPosition());
+            pstmt.setInt(8, selectedRow);
+
+            int row = pstmt.executeUpdate();
+
+//            if (row==1)
+//                수정 성공
+//            else
+//                실패
+
+            pstmt.close();
+            JDBCUtill.makeConnection().close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }
