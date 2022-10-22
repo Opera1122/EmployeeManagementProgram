@@ -61,7 +61,7 @@ public class Login extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == loginButton) {
                 try {
-                    AdminDAO.loginProcess(idTextField.getText(), String.valueOf(passwordTextField.getPassword()));
+                    AdminDAO.LoginProcess(idTextField.getText(), String.valueOf(passwordTextField.getPassword()));
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }

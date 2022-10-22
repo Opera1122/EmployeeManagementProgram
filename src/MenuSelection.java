@@ -9,8 +9,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MenuSelection extends JFrame {
@@ -193,7 +193,7 @@ public class MenuSelection extends JFrame {
         infoMenuPanel.add(scrollPane);
         scrollPane.setBounds(280, 60, 300, 410);
         try {
-            EmployeeDAO.showNumberAndNameTable(model);
+            EmployeeDAO.ShowNumberAndNameTable(model);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -265,7 +265,26 @@ public class MenuSelection extends JFrame {
             }
 
             if (e.getSource() == editButton) {
-
+                int selectedRow = 0;
+                EmployeeDAO.EditEmployee(
+                        table,
+                        selectedRow,
+                        model,
+                        infoNameTextField.getText(),
+                        Integer.parseInt(infoBirthDateTextField.getText()),
+                        infoAddressTextField.getText(),
+                        infoEmailTextField.getText(),
+                        infoTelTextField.getText(),
+                        infoPositionTextField.getText(),
+                        Integer.parseInt(infoNumberTextField.getText())
+                );
+                model.setNumRows(0);
+                try {
+                    EmployeeDAO.ShowNumberAndNameTable(model);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                clearInfoContents();
             }
 
             if (e.getSource() == deleteButton) {
@@ -279,7 +298,7 @@ public class MenuSelection extends JFrame {
 
             if (e.getSource() == searchButton) {
                 try {
-                    EmployeeDAO.showNumberAndNameTable(model);
+                    EmployeeDAO.ShowNumberAndNameTable(model);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -287,7 +306,7 @@ public class MenuSelection extends JFrame {
 
             if (e.getSource() == signUpButton) {
                 try {
-                    EmployeeDAO.signUpEmployee(
+                    EmployeeDAO.SignUpEmployee(
                             signUpNameTextField.getText(),
                             Integer.parseInt(signUpBirthDateTextField.getText()),
                             signUpAddressTextField.getText(),
@@ -296,7 +315,7 @@ public class MenuSelection extends JFrame {
                             signUpPositionTextField.getText()
                     );
                     model.setNumRows(0);
-                    EmployeeDAO.showNumberAndNameTable(model);
+                    EmployeeDAO.ShowNumberAndNameTable(model);
                     clearSignUpContents();
                     JOptionPane.showMessageDialog(null, "사원 정보가 등록되었습니다.", "등록 성공", JOptionPane.INFORMATION_MESSAGE);
                 } catch (SQLException ex) {
@@ -312,12 +331,12 @@ public class MenuSelection extends JFrame {
     }
 
     class MyMouseListener implements MouseListener {
-        public void mouseClicked(java.awt.event.MouseEvent e) {
+        public void mouseClicked(MouseEvent e) {
             table = (JTable)e.getSource();
             int selectedRow = table.getSelectedRow();
 
             try {
-                EmployeeDAO.showListToTextFields(
+                EmployeeDAO.ShowListToTextFields(
                         table,
                         selectedRow,
                         model,
