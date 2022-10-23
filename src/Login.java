@@ -9,6 +9,8 @@ import src.jdbc.*;
 import java.sql.*;
 
 public class Login extends JFrame {
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+    Image iconImage = toolkit.getImage("src/em.png");
     JPanel labelPanel = new JPanel();
     JPanel idPanel = new JPanel();
     JPanel passwordPanel = new JPanel();
@@ -29,6 +31,7 @@ public class Login extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
+        setIconImage(iconImage);
 
         passwordTextField.setEchoChar('*');
 

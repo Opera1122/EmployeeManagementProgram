@@ -20,6 +20,8 @@ public class MenuSelection extends JFrame {
     JMenuItem fileExit = new JMenuItem("종료");
     JMenu topMenuHelp = new JMenu("도움말");
     JMenuItem helpInfo = new JMenuItem("정보");
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+    Image iconImage = toolkit.getImage("src/em.png");
 
     JTabbedPane topTab = new JTabbedPane(JTabbedPane.TOP);
 
@@ -101,6 +103,7 @@ public class MenuSelection extends JFrame {
         setResizable(false);
         setVisible(true);
         setJMenuBar(topMenuBar);
+        setIconImage(iconImage);
 
         topMenuBar.add(topMenufile);
         topMenufile.add(fileLogOut);
