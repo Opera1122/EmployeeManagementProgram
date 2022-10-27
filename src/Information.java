@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class Information extends JFrame {
     Toolkit toolkit = Toolkit.getDefaultToolkit();
-    Image iconImage = toolkit.getImage("src/em.png");
+    Image iconImage = toolkit.getImage("images/icon/em.png");
     JPanel border = new JPanel();
     JLabel maker = new JLabel("제작자 : Opera1122");
     JLabel site = new JLabel("https://github.com/Opera1122");

@@ -21,7 +21,7 @@ public class MenuSelection extends JFrame {
     JMenu topMenuHelp = new JMenu("도움말");
     JMenuItem helpInfo = new JMenuItem("정보");
     Toolkit toolkit = Toolkit.getDefaultToolkit();
-    Image iconImage = toolkit.getImage("src/em.png");
+    Image iconImage = toolkit.getImage("images/icon/em.png");
 
     JTabbedPane topTab = new JTabbedPane(JTabbedPane.TOP);
 

@@ -10,7 +10,7 @@ import java.sql.*;
 
 public class Login extends JFrame {
     Toolkit toolkit = Toolkit.getDefaultToolkit();
-    Image iconImage = toolkit.getImage("src/em.png");
+    Image iconImage = toolkit.getImage("images/icon/em.png");
     JPanel labelPanel = new JPanel();
     JPanel idPanel = new JPanel();
     JPanel passwordPanel = new JPanel();
