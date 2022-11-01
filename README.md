@@ -1,8 +1,6 @@
 # EmployeeManagementProgram
 관리자 계정을 로그인하여 DB에 등록된 사원 정보를 조작하는 CRUD 프로그램
 
-db 생성 sql : [Uploading 사원관리 프로그램 DB생성 쿼리.sql…]()
-
 # 2022-10-26 Demo
 
 > 로그인
