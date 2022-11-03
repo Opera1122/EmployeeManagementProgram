@@ -24,7 +24,6 @@ public class JDBCUtill {
                 Class.forName(className);
                 connection = DriverManager.getConnection(url, userId, password);
             } catch (SQLException | ClassNotFoundException e) {
-                ErrorHandler.error1();
 
                 System.out.println("JDBCUtill/makeConnection - 에러 발생: " + e.getMessage());
             }

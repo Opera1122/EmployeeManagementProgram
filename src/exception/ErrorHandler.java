@@ -1,13 +1,16 @@
 package src.exception;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * @author Taewoo
  */
 
 
-public class ErrorHandler {
+public class ErrorHandler{
 
-    public static void error1() {
-        // 에러 핸들링
+    public static void error_01() {
+
     }
 }
