@@ -361,6 +361,7 @@ public class MenuSelection extends JFrame {
                         infoPositionTextField
                 );
             } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
                 throw new RuntimeException(ex);
             }
         }

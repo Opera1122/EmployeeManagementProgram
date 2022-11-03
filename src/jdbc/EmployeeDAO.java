@@ -4,10 +4,7 @@ import src.Employee;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class EmployeeDAO {
     static Employee employee = new Employee(0, null, 0, null, null, null, null);
@@ -49,7 +46,6 @@ public class EmployeeDAO {
 
             stmt.close();
             pstmt.close();
-            JDBCUtill.makeConnection().close();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -70,7 +66,6 @@ public class EmployeeDAO {
         }
 
         stmt.close();
-        JDBCUtill.makeConnection().close();
     }
 
     public static int SelectedNumberValueFilter(JTable table, int selectedRow, DefaultTableModel model) {
@@ -91,8 +86,6 @@ public class EmployeeDAO {
             JTextField infoTelTextField,
             JTextField infoPositionTextField
     ) throws SQLException {
-        JDBCUtill.makeConnection();
-
         String sql = "select * from employeedb.employee";
         Statement stmt = JDBCUtill.makeConnection().createStatement();
         rs = stmt.executeQuery(sql);
@@ -128,7 +121,6 @@ public class EmployeeDAO {
         }
 
         stmt.close();
-        JDBCUtill.makeConnection().close();
     }
 
     public static void EditEmployee(
@@ -175,7 +167,6 @@ public class EmployeeDAO {
 //                실패
 
             pstmt.close();
-            JDBCUtill.makeConnection().close();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -200,7 +191,6 @@ public class EmployeeDAO {
 //                실패
 
             pstmt.close();
-            JDBCUtill.makeConnection().close();
         } catch (SQLException e){
             e.printStackTrace();
         }
