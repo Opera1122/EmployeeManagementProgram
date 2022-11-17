@@ -1,6 +1,6 @@
 package src.jdbc;
 
-import src.Admin;
+import src.jdbc.dto.Admin;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

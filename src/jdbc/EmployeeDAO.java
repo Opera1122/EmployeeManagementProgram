@@ -1,6 +1,6 @@
 package src.jdbc;
 
-import src.Employee;
+import src.jdbc.dto.Employee;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

@@ -1,4 +1,4 @@
-package src;
+package src.jdbc.dto;
 
 import javax.swing.*;
 import java.awt.image.BufferedImage;

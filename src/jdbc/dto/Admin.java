@@ -1,4 +1,4 @@
-package src;
+package src.jdbc.dto;
 
 public class Admin {
     private String id;
