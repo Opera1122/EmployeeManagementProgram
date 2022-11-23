@@ -138,6 +138,7 @@ public class MenuSelection extends JFrame {
 
         infoMenuPanel.add(infoImportImageButton);
         infoImportImageButton.setBounds(20, 170, 90, 30);
+        infoImportImageButton.addActionListener(new MyListener());
 
         infoMenuPanel.add(infoDeleteImageButton);
         infoDeleteImageButton.setBounds(120, 170, 90, 30);
@@ -268,6 +269,10 @@ public class MenuSelection extends JFrame {
                 new Information();
             }
 
+            if (e.getSource() == infoImportImageButton) {
+                infofileChooser.addChoosableFileFilter(fileFilter);
+                infofileChooser.showOpenDialog(null);
+            }
             if (e.getSource() == editButton) {
                 EmployeeDAO.EditEmployee(
                         table,
