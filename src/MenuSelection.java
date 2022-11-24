@@ -188,10 +188,12 @@ public class MenuSelection extends JFrame {
 
         //테이블 부분
         infoMenuPanel.add(numberAndNameComboBox);
+        numberAndNameComboBox.addActionListener(new MyListener());
         numberAndNameComboBox.setBounds(280, 20, 70, 30);
         infoMenuPanel.add(searchTextField);
         searchTextField.setBounds(370, 20, 100, 30);
         infoMenuPanel.add(searchButton);
+        searchButton.addActionListener(new MyListener());
         table.addMouseListener(new MyMouseListener());
         searchButton.setBounds(480, 20, 70, 30);
         infoMenuPanel.add(scrollPane);
@@ -315,6 +317,12 @@ public class MenuSelection extends JFrame {
 
             if (e.getSource() == searchButton) {
                 try {
+                    if (numberAndNameComboBox.getSelectedItem().equals("번호")) {
+                        EmployeeDAO.SearchEmployeeNumber(model, Integer.parseInt(searchTextField.getText()));
+                    } else if (numberAndNameComboBox.getSelectedItem().equals("이름")) {
+                        EmployeeDAO.SearchEmployeeName(model, searchTextField.getText());
+                    }
+                    model.setNumRows(0);
                     EmployeeDAO.ShowNumberAndNameTable(model);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);

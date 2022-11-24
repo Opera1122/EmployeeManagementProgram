@@ -68,6 +68,42 @@ public class EmployeeDAO {
         stmt.close();
     }
 
+    public static void SearchEmployeeNumber(DefaultTableModel model, int number) throws SQLException {
+        JDBCUtill.makeConnection();
+
+        String sql="select number, name from employeedb.employee where number=?";
+        PreparedStatement pstmt = JDBCUtill.makeConnection().prepareStatement(sql);
+        number = rs.getInt(1);
+        rs = pstmt.executeQuery();
+
+        while(rs.next()) {
+            employee.setNumber(number);
+            employee.setName(rs.getString(2));
+
+            model.addRow(new Object[]{employee.getNumber(), employee.getName()});
+        }
+
+        pstmt.close();
+    }
+
+    public static void SearchEmployeeName(DefaultTableModel model, String name) throws SQLException {
+        JDBCUtill.makeConnection();
+
+        String sql="select number, name from employeedb.employee where name=?";
+        PreparedStatement pstmt = JDBCUtill.makeConnection().prepareStatement(sql);
+        name = rs.getString(2);
+        rs = pstmt.executeQuery();
+
+        while(rs.next()) {
+            employee.setNumber(rs.getInt(1));
+            employee.setName(name);
+
+            model.addRow(new Object[]{employee.getNumber(), employee.getName()});
+        }
+
+        pstmt.close();
+    }
+
     public static int SelectedNumberValueFilter(JTable table, int selectedRow, DefaultTableModel model) {
         selectedRow = (int) model.getValueAt(table.getSelectedRow(), 0);
 
