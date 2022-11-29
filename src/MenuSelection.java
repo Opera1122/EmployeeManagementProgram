@@ -316,16 +316,31 @@ public class MenuSelection extends JFrame {
             }
 
             if (e.getSource() == searchButton) {
+//                try{
+//                    model.setNumRows(0);
+//                    EmployeeDAO.SearchEmployeeNumber(model, Integer.parseInt(searchTextField.getText()));
+//                } catch (SQLException ex) {
+//                    throw new RuntimeException(ex);
+//                }
+
                 try {
                     if (numberAndNameComboBox.getSelectedItem().equals("번호")) {
+                        model.setNumRows(0);
                         EmployeeDAO.SearchEmployeeNumber(model, Integer.parseInt(searchTextField.getText()));
                     } else if (numberAndNameComboBox.getSelectedItem().equals("이름")) {
+                        model.setNumRows(0);
                         EmployeeDAO.SearchEmployeeName(model, searchTextField.getText());
                     }
-                    model.setNumRows(0);
-                    EmployeeDAO.ShowNumberAndNameTable(model);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "잘못된 형식입니다.", "조회 실패", JOptionPane.ERROR_MESSAGE);
+                    model.setNumRows(0);
+                    try {
+                        EmployeeDAO.ShowNumberAndNameTable(model);
+                    } catch (SQLException exc) {
+                        throw new RuntimeException(exc);
+                    }
                 }
             }
 

@@ -73,11 +73,11 @@ public class EmployeeDAO {
 
         String sql="select number, name from employeedb.employee where number=?";
         PreparedStatement pstmt = JDBCUtill.makeConnection().prepareStatement(sql);
-        number = rs.getInt(1);
+        pstmt.setInt(1, number);
         rs = pstmt.executeQuery();
 
         while(rs.next()) {
-            employee.setNumber(number);
+            employee.setNumber(rs.getInt(1));
             employee.setName(rs.getString(2));
 
             model.addRow(new Object[]{employee.getNumber(), employee.getName()});
@@ -91,12 +91,12 @@ public class EmployeeDAO {
 
         String sql="select number, name from employeedb.employee where name=?";
         PreparedStatement pstmt = JDBCUtill.makeConnection().prepareStatement(sql);
-        name = rs.getString(2);
+        pstmt.setString(1, name);
         rs = pstmt.executeQuery();
 
         while(rs.next()) {
             employee.setNumber(rs.getInt(1));
-            employee.setName(name);
+            employee.setName(rs.getString(2));
 
             model.addRow(new Object[]{employee.getNumber(), employee.getName()});
         }
