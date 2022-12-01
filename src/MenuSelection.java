@@ -347,6 +347,7 @@ public class MenuSelection extends JFrame {
 
             if (e.getSource() == refreshButton) {
                 model.setNumRows(0);
+                clearInfoContents();
                 try {
                     EmployeeDAO.ShowNumberAndNameTable(model);
                 } catch (SQLException exc) {
