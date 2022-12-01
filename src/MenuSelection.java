@@ -51,7 +51,7 @@ public class MenuSelection extends JFrame {
     JComboBox numberAndNameComboBox = new JComboBox(numberAndName);
     JTextField searchTextField = new JTextField(10);
     JButton searchButton = new JButton("조회");
-    ImageIcon unConvertedRefreshIcon = new ImageIcon("images/button/Refresh.png");
+    ImageIcon unConvertedRefreshIcon = new ImageIcon("images/button/refresh.png");
     Image unConvertedRefreshImage = unConvertedRefreshIcon.getImage();
     Image ConvertedRefreshImage = unConvertedRefreshImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
     ImageIcon refreshIcon = new ImageIcon(ConvertedRefreshImage);
