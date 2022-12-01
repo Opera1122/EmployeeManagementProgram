@@ -51,6 +51,11 @@ public class MenuSelection extends JFrame {
     JComboBox numberAndNameComboBox = new JComboBox(numberAndName);
     JTextField searchTextField = new JTextField(10);
     JButton searchButton = new JButton("조회");
+    ImageIcon unConvertedRefreshIcon = new ImageIcon("images/button/Refresh.png");
+    Image unConvertedRefreshImage = unConvertedRefreshIcon.getImage();
+    Image ConvertedRefreshImage = unConvertedRefreshImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+    ImageIcon refreshIcon = new ImageIcon(ConvertedRefreshImage);
+    JButton refreshButton = new JButton(refreshIcon);
     DefaultTableModel model = new DefaultTableModel(numberAndName, 0);
     JTable table = new JTable(model);
     JScrollPane scrollPane = new JScrollPane(table);
@@ -189,15 +194,18 @@ public class MenuSelection extends JFrame {
         //테이블 부분
         infoMenuPanel.add(numberAndNameComboBox);
         numberAndNameComboBox.addActionListener(new MyListener());
-        numberAndNameComboBox.setBounds(280, 20, 70, 30);
+        numberAndNameComboBox.setBounds(250, 20, 70, 30);
         infoMenuPanel.add(searchTextField);
-        searchTextField.setBounds(370, 20, 100, 30);
+        searchTextField.setBounds(330, 20, 120, 30);
         infoMenuPanel.add(searchButton);
         searchButton.addActionListener(new MyListener());
+        searchButton.setBounds(460, 20, 70, 30);
+        infoMenuPanel.add(refreshButton);
+        refreshButton.addActionListener(new MyListener());
+        refreshButton.setBounds(540, 20, 30, 30);
         table.addMouseListener(new MyMouseListener());
-        searchButton.setBounds(480, 20, 70, 30);
         infoMenuPanel.add(scrollPane);
-        scrollPane.setBounds(280, 60, 300, 410);
+        scrollPane.setBounds(250, 60, 330, 410);
         try {
             EmployeeDAO.ShowNumberAndNameTable(model);
         } catch (SQLException e) {
@@ -334,6 +342,15 @@ public class MenuSelection extends JFrame {
                     } catch (SQLException exc) {
                         throw new RuntimeException(exc);
                     }
+                }
+            }
+
+            if (e.getSource() == refreshButton) {
+                model.setNumRows(0);
+                try {
+                    EmployeeDAO.ShowNumberAndNameTable(model);
+                } catch (SQLException exc) {
+                    throw new RuntimeException(exc);
                 }
             }
 
