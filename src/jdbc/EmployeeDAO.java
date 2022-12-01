@@ -89,9 +89,9 @@ public class EmployeeDAO {
     public static void SearchEmployeeName(DefaultTableModel model, String name) throws SQLException {
         JDBCUtill.makeConnection();
 
-        String sql="select number, name from employeedb.employee where name=?";
+        String sql="select number, name from employeedb.employee where name like ?";
         PreparedStatement pstmt = JDBCUtill.makeConnection().prepareStatement(sql);
-        pstmt.setString(1, name);
+        pstmt.setString(1, "%" + name + "%");
         rs = pstmt.executeQuery();
 
         while(rs.next()) {
