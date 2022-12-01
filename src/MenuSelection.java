@@ -368,6 +368,7 @@ public class MenuSelection extends JFrame {
                     model.setNumRows(0);
                     EmployeeDAO.ShowNumberAndNameTable(model);
                     clearSignUpContents();
+                    clearInfoContents();
                     JOptionPane.showMessageDialog(null, "사원 정보가 등록되었습니다.", "등록 성공", JOptionPane.INFORMATION_MESSAGE);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
