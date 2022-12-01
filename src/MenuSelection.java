@@ -316,13 +316,6 @@ public class MenuSelection extends JFrame {
             }
 
             if (e.getSource() == searchButton) {
-//                try{
-//                    model.setNumRows(0);
-//                    EmployeeDAO.SearchEmployeeNumber(model, Integer.parseInt(searchTextField.getText()));
-//                } catch (SQLException ex) {
-//                    throw new RuntimeException(ex);
-//                }
-
                 try {
                     if (numberAndNameComboBox.getSelectedItem().equals("번호")) {
                         model.setNumRows(0);
