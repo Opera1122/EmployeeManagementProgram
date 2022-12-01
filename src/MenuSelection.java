@@ -205,7 +205,7 @@ public class MenuSelection extends JFrame {
         refreshButton.setBounds(540, 20, 30, 30);
         table.addMouseListener(new MyMouseListener());
         infoMenuPanel.add(scrollPane);
-        scrollPane.setBounds(250, 60, 330, 410);
+        scrollPane.setBounds(250, 60, 322, 410);
         try {
             EmployeeDAO.ShowNumberAndNameTable(model);
         } catch (SQLException e) {
