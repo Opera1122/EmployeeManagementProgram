@@ -268,6 +268,9 @@ public class MenuSelection extends JFrame {
         int selectedRow = 0;
         @Override
         public void actionPerformed(ActionEvent e) {
+            infofileChooser.setMultiSelectionEnabled(false);
+            signUpfileChooser.setMultiSelectionEnabled(false);
+
             if (e.getSource() == fileLogOut) {
                 new Login();
                 dispose();
@@ -281,7 +284,7 @@ public class MenuSelection extends JFrame {
 
             if (e.getSource() == infoImportImageButton) {
                 infofileChooser.addChoosableFileFilter(fileFilter);
-                infofileChooser.showOpenDialog(null);
+                infofileChooser.showOpenDialog(infoImagePanel);
             }
             if (e.getSource() == editButton) {
                 EmployeeDAO.EditEmployee(
