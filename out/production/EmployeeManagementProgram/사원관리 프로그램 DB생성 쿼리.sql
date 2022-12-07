@@ -18,7 +18,8 @@ create table `employee` (
     `address` varchar(45) not null,
     `email` varchar(45) not null,
     `tel` varchar(45) not null,
-    `position` varchar(45),
+    `position` varchar(45) not null,
+    `image` longblob,
     primary key (`number`)
 );
 
