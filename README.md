@@ -14,11 +14,3 @@
 > 사원 등록
 
 ![signup](https://user-images.githubusercontent.com/113095585/198043392-4360fb01-c39a-4dd5-a84b-6652c7131654.png)
-
-```java
-public class Hello{
-    public static void main(String[] args) {
-        int d = 0;
-    }
-}
-```
