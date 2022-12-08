@@ -9,7 +9,7 @@
 
 > 사원 정보
 
-![info](https://user-images.githubusercontent.com/113095585/198043384-0c3dc246-f682-4b88-a5e0-2420715eb6a9.png)
+![사원 정보 패널](https://user-images.githubusercontent.com/113095585/206369394-5a0cba3a-ac73-4c91-863e-2851fe2626f1.png)
 
 > 사원 등록
 
