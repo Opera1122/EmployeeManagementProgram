@@ -19,7 +19,7 @@ create table `employee` (
     `email` varchar(45) not null,
     `tel` varchar(45) not null,
     `position` varchar(45) not null,
-    `image` longblob,
+<--    `image` longblob, 미 구현 상태
     primary key (`number`)
 );
 
