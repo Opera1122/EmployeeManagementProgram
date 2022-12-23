@@ -1,6 +1,13 @@
 # EmployeeManagementProgram
 관리자 계정을 로그인하여 DB에 등록된 사원 정보를 조작하는 CRUD 프로그램
 
+## 제작 기간
+2022.09 ~
+
+## 제작 기술
+- Java Swing
+- MySQL
+
 # 2022-12-08 Demo
 
 > 로그인
