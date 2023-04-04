@@ -12,7 +12,7 @@ public class Information extends JFrame {
     JPanel border = new JPanel();
     JLabel maker = new JLabel("제작자 : Opera1122");
     JLabel site = new JLabel("https://github.com/Opera1122");
-    JLabel copyright = new JLabel("(C) 2022. Opera1122 all light reserved.");
+    JLabel copyright = new JLabel("(C) 2022. Opera1122 all rights reserved.");
     JButton check = new JButton("확인");
     public Information() {
         setTitle("프로그램 정보");
