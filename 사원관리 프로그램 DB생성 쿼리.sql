@@ -1,28 +1,37 @@
-create database employeedb;
-use employeedb;
+CREATE DATABASE IF NOT EXISTS employeedb DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE employeedb;
 
-create table `admin` (
-	`id` varchar(45) not null,
-    `pw` varchar(45) not null,
-    `birthdate` int not null,
-    `name` varchar(45) not null,
-    `address` varchar(45) not null,
-    `tel` varchar(45) not null,
-    primary key (`id`)
+CREATE TABLE IF NOT EXISTS `admin` (
+    `id` VARCHAR(45) NOT NULL,
+    `pw` VARCHAR(45) NOT NULL,
+    `birthdate` INT NOT NULL,
+    `name` VARCHAR(45) NOT NULL,
+    `address` VARCHAR(45) NOT NULL,
+    `tel` VARCHAR(45) NOT NULL,
+    PRIMARY KEY (`id`)
 );
 
-create table `employee` (
-	`number` int not null auto_increment,
-    `name` varchar(45) not null,
-    `birthdate` int not null,
-    `address` varchar(45) not null,
-    `email` varchar(45) not null,
-    `tel` varchar(45) not null,
-    `position` varchar(45) not null,
-<--    `image` longblob, 미 구현 상태
-    primary key (`number`)
+CREATE TABLE IF NOT EXISTS `employee` (
+    `number` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(45) NOT NULL,
+    `birthdate` INT NOT NULL,
+    `address` VARCHAR(45) NOT NULL,
+    `email` VARCHAR(45) NOT NULL,
+    `tel` VARCHAR(45) NOT NULL,
+    `position` VARCHAR(45) NOT NULL,
+    `image` LONGBLOB NULL,
+    PRIMARY KEY (`number`)
 );
 
-insert into `admin` values('admin', '1234', 19800504, '홍길동', '서울특별시', '010-1234-5678');
+-- 기존 employee 테이블에 image 컬럼이 없을 때만 실행하세요.
+-- ALTER TABLE employee ADD COLUMN image LONGBLOB NULL;
 
-insert into `employee` values(1, '심청이', 19900211, '인천광역시', 'simchung123@gmail.com', '010-1111-1111', '사원');
+INSERT INTO `admin` (id, pw, birthdate, name, address, tel)
+SELECT 'admin', '1234', 19800504, '홍길동', '서울특별시', '010-1234-5678'
+FROM DUAL
+WHERE NOT EXISTS (SELECT 1 FROM `admin` LIMIT 1);
+
+INSERT INTO `employee` (name, birthdate, address, email, tel, position)
+SELECT '심청이', 19900211, '인천광역시', 'simchung123@gmail.com', '010-1111-1111', '사원'
+FROM DUAL
+WHERE NOT EXISTS (SELECT 1 FROM `employee` LIMIT 1);

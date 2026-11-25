@@ -1,4 +1,4 @@
-package src.jdbc.dto;
+package emp.model;
 
 public class Admin {
     private String id;
@@ -7,6 +7,9 @@ public class Admin {
     private String name;
     private String address;
     private String tel;
+
+    public Admin() {
+    }
 
     public Admin(String id, String pw, int birthDate, String name, String address, String tel) {
         this.id = id;
@@ -37,7 +40,7 @@ public class Admin {
         return birthDate;
     }
 
-    public void setBirthDate(int age) {
+    public void setBirthDate(int birthDate) {
         this.birthDate = birthDate;
     }
 

@@ -1,7 +1,4 @@
-package src.jdbc.dto;
-
-import javax.swing.*;
-import java.awt.image.BufferedImage;
+package emp.model;
 
 public class Employee {
     private int number;
@@ -11,16 +8,9 @@ public class Employee {
     private String email;
     private String tel;
     private String position;
+    private byte[] image;
 
-
-    public Employee(int number, String name, int birthDate, String address, String email, String tel, String position) {
-        this.number = number;
-        this.name = name;
-        this.birthDate = birthDate;
-        this.address = address;
-        this.email = email;
-        this.tel = tel;
-        this.position = position;
+    public Employee() {
     }
 
     public int getNumber() {
@@ -77,5 +67,13 @@ public class Employee {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }
